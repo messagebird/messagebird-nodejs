@@ -1,5 +1,5 @@
 {
-  "name": "support@messagebird",
+  "name": "messagebird",
   "version": "0.0.1",
   "description": "A Node.js wrapper for the MessageBird REST API",
   "main": "lib/messagebird.js",
@@ -21,6 +21,6 @@
   "dependencies": {
     "assert": "^1.3.0",
     "https": "^1.0.0",
-    "url": "^0.10.3"
+    "querystring": "^0.2.0"
   }
 }
