@@ -1,0 +1,26 @@
+{
+  "name": "support@messagebird",
+  "version": "0.0.1",
+  "description": "A Node.js wrapper for the MessageBird REST API",
+  "main": "lib/messagebird.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/messagebird/nodejs-rest-api.git"
+  },
+  "keywords": [
+    "sms",
+    "text",
+    "messagebird"
+  ],
+  "author": "Joey van Ommen <joey@messagebird.com> (https://www.messagebird.com)",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
+  "dependencies": {
+    "assert": "^1.3.0",
+    "https": "^1.0.0",
+    "url": "^0.10.3"
+  }
+}
