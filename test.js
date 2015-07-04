@@ -1,6 +1,6 @@
 var messagebird = require('./lib/messagebird');
 
-console.log('MessageBird Node.js SDK tests');
+console.log('MessageBird Node.js Library test run');
 console.log('---');
 
 // test_WyB2x1bFsXypeab533ToUj0ql

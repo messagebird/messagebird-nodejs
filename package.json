@@ -16,7 +16,7 @@
     "messagebird"
   ],
   "author": "Joey van Ommen <joey@messagebird.com> (https://www.messagebird.com)",
-  "license": "ISC",
+  "license": "The BSD 2-Clause License",
   "homepage": "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
   "dependencies": {
     "assert": "^1.3.0",
