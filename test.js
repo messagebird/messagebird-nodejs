@@ -1,23 +1,27 @@
-var messagebird = require('./lib/messagebird');
+var messagebird = require('./lib/messagebird')
+    colors = require('colors');
 
 console.log('MessageBird Node.js Library test run');
-console.log('---');
+console.log('---'.blue);
 
 var live = false;
 if( live ){
-    messagebird.init('live_kqnckmyT61aVkpgObVUN4cNcD');
+    messagebird.init('<LIVE_ACCESS_KEY>');
+    console.log('Using LIVE access key...');
 } else{
-    messagebird.init('test_WyB2x1bFsXypeab533ToUj0ql', true);
+    messagebird.init('<TEST_ACCESS_KEY>', false);
+    console.log('Using TEST access key...');
 }
+console.log('---'.blue);
 
-var now = microtime(true);
+var now = microtime();
 
 console.log('Sending message(s)...');
 
 // Send an SMS
 messagebird.messages.create(
     'Joey',
-    [ 59995288283 ],
+    [ 31610948431 ],
     'This message was sent using the MessageBird Node.js API Wrapper',
     {
         type: 'sms',
@@ -31,12 +35,16 @@ messagebird.messages.create(
     },
     function(error, response){
         if( !error ){
-            console.log((microtime(true) - now).toFixed(3) + 's: Messages sent - ' + response.id);
+            console.log((microtime() + 's: ').green + 'Messages sent' + (' - ' + response.id).grey);
 
             // Read an SMS
             messagebird.messages.read(response.id, function(error, response){
-                console.log((microtime(true) - now).toFixed(3) + 's: Messages sent/read: ' + response.totalCount);
+                console.log((microtime() + 's: ').green + 'Messages sent/read: ' + response.totalCount);
             });
+        } else {
+            for( var i = 0; i < error.length; i++ ){
+                console.log('ERR: '.red + 'Messages: ' + error[i].description);
+            }
         }
     });
 
@@ -45,7 +53,7 @@ console.log('Sending voice message(s)...');
 // Send a voice message
 messagebird.voice_messages.create(
     [ 31610948431 ],
-    'Hey Henri Winkel! You can also send automated messages with Messagebird. Cecil is sooo dumb.',
+    'Hey Henri Winkel! You can also send automated messages with Messagebird.',
     {
         reference: 'A client reference',
         language: 'en-gb',
@@ -56,12 +64,16 @@ messagebird.voice_messages.create(
     },
     function(error, response){
         if( !error ){
-            console.log((microtime(true) - now).toFixed(3) + 's: Voice messages sent - ' + response.id);
+            console.log((microtime() + 's: ').green + 'Voice messages sent' + (' - ' + response.id).grey);
 
             // Read an SMS
             messagebird.voice_messages.read(response.id, function(error, response){
-                console.log((microtime(true) - now).toFixed(3) + 's: Voice messages sent/read: ' + response.totalCount);
+                console.log((microtime() + 's: ').green + 'Voice messages sent/read: ' + response.totalCount);
             });
+        } else {
+            for( var i = 0; i < error.length; i++ ){
+                console.log('ERR: '.red + 'Voice messages: ' + error[i].description);
+            }
         }
     });
 
@@ -73,12 +85,16 @@ messagebird.hlr.create(
     'The ref',
     function(error, response){
         if( !error ){
-            console.log((microtime(true) - now).toFixed(3) + 's: HLR sent - ' + response.id);
+            console.log((microtime() + 's: ').green + 'HLR sent' + (' - ' + response.id).grey);
 
             // Read an SMS
             messagebird.hlr.read(response.id, function(error, response){
-                console.log((microtime(true) - now).toFixed(3) + 's: HLR sent/read: ' + response.totalCount);
+                console.log((microtime() + 's: ').green + 'HLR sent/read: ' + response.totalCount);
             });
+        } else {
+            for( var i = 0; i < error.length; i++ ){
+                console.log('ERR: '.red + 'HLR: ' + error[i].description);
+            }
         }
     });
 
@@ -86,12 +102,19 @@ console.log('Reading balance...');
 
 messagebird.balance.read(function(error, response){
     if( !error ){
-        console.log((microtime(true) - now).toFixed(3) + 's: Your balance: ' + response.amount + ', ' + response.type + ', ' + response.payment );
+        console.log((microtime() + 's: ').green + 'Your balance: ' + response.amount + ', ' + response.type + ', ' + response.payment );
+    } else {
+        for( var i = 0; i < error.length; i++ ){
+            console.log('ERR: '.red + 'Balance: ' + error[i].description);
+        }
     }
 });
 
-console.log('---');
+console.log('---'.blue);
 
 function microtime() {
+    if( now ){
+        return (parseFloat(new Date().getTime() / 1000) - now).toFixed(3);
+    }
     return parseFloat(new Date().getTime() / 1000);
 }
