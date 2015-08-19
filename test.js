@@ -1,120 +1,234 @@
-var messagebird = require('./lib/messagebird')
-    colors = require('colors');
+var MessageBird = require ('./');
+var messagebird;
+var colors = require ('colors');
 
-console.log('MessageBird Node.js Library test run');
-console.log('---'.blue);
+var accessKey = process.env.MB_ACCESSKEY || null;
+var timeout = process.env.MB_TIMEOUT || 5000;
 
-var live = false;
-if( live ){
-    messagebird.init('<LIVE_ACCESS_KEY>');
-    console.log('Using LIVE access key...');
-} else{
-    messagebird.init('<TEST_ACCESS_KEY>', false);
-    console.log('Using TEST access key...');
+var testStart = Date.now ();
+var errors = 0;
+var queue = [];
+var next = 0;
+var accessType = null;
+
+var cache = {
+  textMessage: {
+    originator: 'node-js',
+    recipients: [31610948431],
+    type: 'sms',
+    body: 'Test message from node v' + process.version,
+    gateway: 2
+  },
+
+  voiceMessage: {
+    recipients: [31610948431],
+    body: 'Hello, this is a test message from node version ' + process.version,
+    language: 'en-gb',
+    voice: 'female',
+    repeat: 1,
+    ifMachine: 'continue'
+  },
+
+  hlr: {}
+};
+
+
+// Output
+function cGood (arg) {
+  console.log ('good'.green + ' - ' + arg);
 }
-console.log('---'.blue);
 
-var now = microtime();
+function cFail (arg) {
+  console.error ('fail'.bold.red + ' - ' + arg);
+  errors++;
+}
 
-console.log('Sending message(s)...');
+function cInfo (arg) {
+  console.log ('info'.yellow + ' - ' + arg);
+}
 
-// Send an SMS
-messagebird.messages.create(
-    'Joey',
-    [ 31610948431 ],
-    'This message was sent using the MessageBird Node.js API Wrapper',
-    {
-        type: 'sms',
-        reference: 'A client reference',
-        validity: 12,
-        gateway: 2,
-        typeDetails: 's0m3H4shV4lu3H3r3',
-        datacoding: 'plain',
-        mclass: 1,
-        scheduledDatetime: '2015-07-03T19:40:03+00:00'
-    },
-    function(error, response){
-        if( !error ){
-            console.log((microtime() + 's: ').green + 'Messages sent' + (' - ' + response.id).grey);
+function cDump (arg) {
+  console.dir (arg, { depth: null, colors: true });
+}
 
-            // Read an SMS
-            messagebird.messages.read(response.id, function(error, response){
-                console.log((microtime() + 's: ').green + 'Messages sent/read: ' + response.totalCount);
-            });
-        } else {
-            for( var i = 0; i < error.length; i++ ){
-                console.log('ERR: '.red + 'Messages: ' + error[i].description);
-            }
-        }
-    });
+function cError (arg, err) {
+  console.error ('ERR'.bold.red + '  - ' + arg + '\n');
+  cDump (err);
+  console.log ();
+  console.error (err.stack);
+  console.log ();
+  errors++;
+}
 
-console.log('Sending voice message(s)...');
 
-// Send a voice message
-messagebird.voice_messages.create(
-    [ 31610948431 ],
-    'Hey Henri Winkel! You can also send automated messages with Messagebird.',
-    {
-        reference: 'A client reference',
-        language: 'en-gb',
-        voice: 'female',
-        repeat: 1,
-        ifMachine: 'continue',
-        scheduledDatetime: '2015-07-03T19:40:03+00:00'
-    },
-    function(error, response){
-        if( !error ){
-            console.log((microtime() + 's: ').green + 'Voice messages sent' + (' - ' + response.id).grey);
+// handle exits
+/* eslint no-process-exit:0 */
 
-            // Read an SMS
-            messagebird.voice_messages.read(response.id, function(error, response){
-                console.log((microtime() + 's: ').green + 'Voice messages sent/read: ' + response.totalCount);
-            });
-        } else {
-            for( var i = 0; i < error.length; i++ ){
-                console.log('ERR: '.red + 'Voice messages: ' + error[i].description);
-            }
-        }
-    });
+process.on ('exit', function () {
+  var timing = (Date.now () - testStart) / 1000;
 
-console.log('Creating HLR...');
-
-// Create HLR
-messagebird.hlr.create(
-    31610948431,
-    'The ref',
-    function(error, response){
-        if( !error ){
-            console.log((microtime() + 's: ').green + 'HLR sent' + (' - ' + response.id).grey);
-
-            // Read an SMS
-            messagebird.hlr.read(response.id, function(error, response){
-                console.log((microtime() + 's: ').green + 'HLR sent/read: ' + response.totalCount);
-            });
-        } else {
-            for( var i = 0; i < error.length; i++ ){
-                console.log('ERR: '.red + 'HLR: ' + error[i].description);
-            }
-        }
-    });
-
-console.log('Reading balance...');
-
-messagebird.balance.read(function(error, response){
-    if( !error ){
-        console.log((microtime() + 's: ').green + 'Your balance: ' + response.amount + ', ' + response.type + ', ' + response.payment );
-    } else {
-        for( var i = 0; i < error.length; i++ ){
-            console.log('ERR: '.red + 'Balance: ' + error[i].description);
-        }
-    }
+  console.log ('\nTiming: ' + timing + ' sec');
+  if (errors === 0) {
+    console.log ('\nDONE, no errors.\n');
+    process.exit (0);
+  } else {
+    console.log ('\nFAIL'.bold.red + ', ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\n');
+    process.exit (1);
+  }
 });
 
-console.log('---'.blue);
+// prevent errors from killing the process
+process.on ('uncaughtException', function (err) {
+  cError ('uncaughtException', err);
+});
 
-function microtime() {
-    if( now ){
-        return (parseFloat(new Date().getTime() / 1000) - now).toFixed(3);
+// Queue to prevent flooding
+function doNext () {
+  next++;
+  if (queue [next]) {
+    queue [next] ();
+  }
+}
+
+// doTest( passErr, 'methods', [
+//   ['feeds', typeof feeds === 'object']
+// ])
+function doTest (err, label, tests) {
+  var i;
+  var testErrors = [];
+
+  if (err instanceof Error) {
+    cError (label, err);
+    errors++;
+  } else {
+    for (i = 0; i < tests.length; i++) {
+      if (tests [i] [1] !== true) {
+        testErrors.push (tests [i] [0]);
+        errors++;
+      }
     }
-    return parseFloat(new Date().getTime() / 1000);
+
+    if (testErrors.length === 0) {
+      cGood (label);
+    } else {
+      cFail (label + ' (' + testErrors.join (', ') + ')');
+    }
+  }
+
+  doNext ();
+}
+
+
+queue.push (function () {
+  messagebird.messages.create (
+    {},
+    function (err) {
+      doTest (null, 'error handling', [
+        ['type', err instanceof Error],
+        ['message', err.message === 'api error'],
+        ['errors', err.errors instanceof Array]
+      ]);
+    }
+  );
+});
+
+
+queue.push (function () {
+  messagebird.balance.read (function (err, data) {
+    doTest (err, 'balance.read', [
+      ['type', data instanceof Object],
+      ['.amount', data && typeof data.amount === 'number'],
+      ['.type', data && typeof data.type === 'string'],
+      ['.payment', data && typeof data.payment === 'string']
+    ]);
+  });
+});
+
+
+queue.push (function () {
+  messagebird.messages.create (cache.textMessage, function (err, data) {
+    cache.textMessage.id = data && data.id || null;
+    doTest (err, 'messages.create', [
+      ['type', data instanceof Object],
+      ['.id', data && typeof data.id === 'string']
+    ]);
+  });
+});
+
+
+queue.push (function () {
+  if (cache.textMessage.id) {
+    messagebird.messages.read (cache.textMessage.id, function (err, data) {
+      doTest (err, 'messages.read', [
+        ['type', data instanceof Object],
+        ['.totalCount', data && typeof data.totalCount === 'number']
+      ]);
+    });
+  }
+});
+
+
+queue.push (function () {
+  messagebird.voice_messages.create (cache.voiceMessage, function (err, data) {
+    cache.voiceMessage.id = data && data.id || null;
+    doTest (err, 'voice_messages.create', [
+      ['type', data instanceof Object],
+      ['.id', data && typeof data.id === 'string']
+    ]);
+  });
+});
+
+
+queue.push (function () {
+  if (cache.voiceMessage.id) {
+    messagebird.voice_messages.read (cache.voiceMessage.id, function (err, data) {
+      doTest (err, 'voice_messages.read', [
+        ['type', data instanceof Object],
+        ['.totalCount', data && typeof data.totalCount === 'number']
+      ]);
+    });
+  }
+});
+
+
+queue.push (function () {
+  messagebird.hlr.create (
+    31610948431,
+    'The ref',
+    function (err, data) {
+      cache.hlr.id = data && data.id || null;
+      doTest (err, 'hlr.create', [
+        ['type', data instanceof Object],
+        ['.id', data && typeof data.id === 'string']
+      ]);
+    }
+  );
+});
+
+
+queue.push (function () {
+  if (cache.hlr.id) {
+    messagebird.hlr.read (cache.hlr.id, function (err, data) {
+      doTest (err, 'hlr.read', [
+        ['type', data instanceof Object],
+        ['.totalCount', data && typeof data.totalCount === 'number']
+      ]);
+    });
+  }
+});
+
+
+// Start the tests
+if (accessKey) {
+  accessType = accessKey.split ('_') [0] .toUpperCase ();
+  console.log ('\n');
+  cInfo ('Running test.js');
+  cInfo ('Using ' + accessType + ' access key\n');
+
+  messagebird = new MessageBird.client (accessKey, timeout);
+
+  queue[0]();
+} else {
+  cFail ('MB_ACCESSKEY not set');
+  errors++;
 }
