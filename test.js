@@ -5,6 +5,7 @@ var fs = require ('fs');
 
 var accessKey = process.env.MB_ACCESSKEY || null;
 var timeout = process.env.MB_TIMEOUT || 5000;
+var number = process.env.MB_NUMBER || 31610948431;
 
 var testStart = Date.now ();
 var errors = 0;
@@ -15,14 +16,14 @@ var accessType = null;
 var cache = {
   textMessage: {
     originator: 'node-js',
-    recipients: [31610948431],
+    recipients: [number],
     type: 'sms',
     body: 'Test message from node v' + process.version,
     gateway: 2
   },
 
   voiceMessage: {
-    recipients: [31610948431],
+    recipients: [number],
     body: 'Hello, this is a test message from node version ' + process.version,
     language: 'en-gb',
     voice: 'female',
@@ -30,7 +31,11 @@ var cache = {
     ifMachine: 'continue'
   },
 
-  hlr: {}
+  hlr: {},
+
+  verify: {
+    recipient: number,
+  }
 };
 
 
@@ -198,7 +203,7 @@ queue.push (function () {
 
 queue.push (function () {
   messagebird.hlr.create (
-    31610948431,
+    number,
     'The ref',
     function (err, data) {
       cache.hlr.id = data && data.id || null;
@@ -217,6 +222,40 @@ queue.push (function () {
       doTest (err, 'hlr.read', [
         ['type', data instanceof Object],
         ['.totalCount', data && typeof data.totalCount === 'number']
+      ]);
+    });
+  }
+});
+
+
+queue.push (function () {
+  messagebird.verify.create (cache.verify.recipient, function (err, data) {
+    cache.verify.id = data && data.id || null;
+    doTest (err, 'verify.create', [
+      ['type', data instanceof Object],
+      ['.id', data && typeof data.id === 'string']
+    ]);
+  });
+});
+
+
+queue.push (function () {
+  if (cache.verify.id) {
+    messagebird.verify.read (cache.verify.id, function (err, data) {
+      doTest (err, 'verify.read', [
+        ['type', data instanceof Object],
+        ['.id', data && data.id === cache.verify.id]
+      ]);
+    });
+  }
+});
+
+
+queue.push (function () {
+  if (cache.verify.id) {
+    messagebird.verify.delete (cache.verify.id, function (err, data) {
+      doTest (err, 'verify.delete', [
+        ['type', !data]
       ]);
     });
   }
