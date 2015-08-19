@@ -22,7 +22,7 @@
   "homepage":          "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
   "dependencies": {},
   "devDependencies": {
-    "eslint":          "^0.24.0",
-    "colors":          "^1.1.2"
+    "eslint":          ">=0.24.0",
+    "colors":          ">=1.1.2"
   }
 }
