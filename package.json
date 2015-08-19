@@ -3,6 +3,7 @@
   "version":           "2.0.0",
   "description":       "A node.js wrapper for the MessageBird REST API",
   "main":              "index.js",
+  "engine":            "^0.10.0",
   "scripts": {
     "test":            "eslint . ; node test.js"
   },
@@ -22,7 +23,7 @@
   "homepage":          "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
   "dependencies": {},
   "devDependencies": {
-    "eslint":          ">=0.24.0",
-    "colors":          ">=1.1.2"
+    "eslint":          "^0.24.0",
+    "colors":          "^1.1.2"
   }
 }
