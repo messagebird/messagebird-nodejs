@@ -33,7 +33,31 @@ Nice! Now we can send API requests through node. Let's use getting your balance 
 
 ```javascript
 // Get your balance
-messagebird.balance.read (console.log);
+messagebird.balance.read (function (err, data) {
+  if (err) { return console.log (err); }
+  console.log (data);
+});
+
+// Result object:
+{
+  payment: 'prepaid',
+  type: 'credits',
+  amount: 42.5
+}
+```
+
+Or in case of an error:
+
+```javascript
+{ [Error: api error]
+  errors: [
+    {
+      code: 2,
+      description: 'Request not allowed (incorrect access_key)',
+      parameter: 'access_key'
+    }
+  ]
+}
 ```
 
 
