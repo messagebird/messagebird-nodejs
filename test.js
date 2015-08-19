@@ -1,6 +1,7 @@
 var MessageBird = require ('./');
 var messagebird;
 var colors = require ('colors');
+var fs = require ('fs');
 
 var accessKey = process.env.MB_ACCESSKEY || null;
 var timeout = process.env.MB_TIMEOUT || 5000;
@@ -66,6 +67,10 @@ function cError (arg, err) {
 
 process.on ('exit', function () {
   var timing = (Date.now () - testStart) / 1000;
+
+  if (process.env.CIRCLE_ARTIFACTS) {
+    fs.rename ('./npm-debug.log', process.env.CIRCLE_ARTIFACTS + '/npm-debug.log', function () {});
+  }
 
   console.log ('\nTiming: ' + timing + ' sec');
   if (errors === 0) {
