@@ -34,7 +34,7 @@ var cache = {
   hlr: {},
 
   verify: {
-    recipient: number,
+    recipient: number
   }
 };
 
