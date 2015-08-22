@@ -269,7 +269,6 @@ queue.push (function () {
 // Start the tests
 if (accessKey) {
   accessType = accessKey.split ('_') [0] .toUpperCase ();
-  console.log ('\n');
   cInfo ('Running test.js');
   cInfo ('Using ' + accessType + ' access key\n');
 
