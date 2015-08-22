@@ -84,7 +84,6 @@
     "no-sequences": 2,
     "no-shadow": 2,
     "no-shadow-restricted-names": 2,
-    "no-space-before-semi": 2,
     "no-spaced-func": 0,
     "no-sparse-arrays": 1,
     "no-sync": 1,
