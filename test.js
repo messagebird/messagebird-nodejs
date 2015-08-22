@@ -18,11 +18,12 @@ var cache = {
     originator: 'node-js',
     recipients: [number],
     type: 'sms',
-    body: 'Test message from node v' + process.version,
+    body: 'Test message from node ' + process.version,
     gateway: 2
   },
 
   voiceMessage: {
+    originator: 'node-js',
     recipients: [number],
     body: 'Hello, this is a test message from node version ' + process.version,
     language: 'en-gb',
@@ -77,7 +78,9 @@ process.on ('exit', function () {
     fs.rename ('./npm-debug.log', process.env.CIRCLE_ARTIFACTS + '/npm-debug.log', function () {});
   }
 
-  console.log ('\nTiming: ' + timing + ' sec');
+  console.log ();
+  cInfo ('Timing: ' + timing + ' sec');
+
   if (errors === 0) {
     console.log ('\nDONE, no errors.\n');
     process.exit (0);
