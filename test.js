@@ -255,7 +255,8 @@ queue.push (function () {
   if (cache.verify.id) {
     messagebird.verify.delete (cache.verify.id, function (err, data) {
       doTest (err, 'verify.delete', [
-        ['type', !data]
+        ['type', typeof data === 'boolean'],
+        ['data', data === true]
       ]);
     });
   }
