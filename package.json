@@ -7,7 +7,7 @@
     "node":            ">=0.10.0"
   },
   "scripts": {
-    "test":            "eslint . && node test.js"
+    "test":            "node test.js"
   },
   "repository": {
     "type":            "git",
@@ -25,7 +25,6 @@
   "homepage":          "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
   "dependencies": {},
   "devDependencies": {
-    "eslint":          "^0.24.0",
     "colors":          "^1.1.2"
   }
 }
