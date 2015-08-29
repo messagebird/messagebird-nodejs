@@ -9,7 +9,7 @@ Requirements
 ------------
 
 - [Sign up](https://www.messagebird.com/en/signup) for a free MessageBird account
-- Create a new `access_key` in the [developers](https://www.messagebird.com/app/nl/settings/developers/access) section
+- Create a new `access_key` in the [developers](https://www.messagebird.com/app/en/settings/developers/access) section
 - MessageBird REST API for node.js requires node.js >= 0.10 or io.js
 
 
