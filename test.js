@@ -1,6 +1,5 @@
 var MessageBird = require ('./');
 var messagebird;
-var colors = require ('colors');
 var fs = require ('fs');
 
 var accessKey = process.env.MB_ACCESSKEY || null;
@@ -40,18 +39,37 @@ var cache = {
 };
 
 
+function color (str, color, style) {
+  var colors = {
+    red: '\033[31m',
+    green: '\033[32m',
+    yellow: '\033[33m'
+  };
+  var styles = {
+    normal: '\033[0m',
+    bold: '\033[1m'
+  };
+  var res = colors [color];
+  if (style) {
+    res += styles [style];
+  }
+  res = res + str + styles ['normal'];
+  return res;
+}
+
+
 // Output
 function cGood (arg) {
-  console.log ('good'.green + ' - ' + arg);
+  console.log (color ('good', 'green', 'bold') + ' - ' + arg);
 }
 
 function cFail (arg) {
-  console.error ('fail'.bold.red + ' - ' + arg);
+  console.error (color ('fail', 'red', 'bold') + ' - ' + arg);
   errors++;
 }
 
 function cInfo (arg) {
-  console.log ('info'.yellow + ' - ' + arg);
+  console.log (color ('info', 'yellow', 'bold') + ' - ' + arg);
 }
 
 function cDump (arg) {
@@ -59,7 +77,7 @@ function cDump (arg) {
 }
 
 function cError (arg, err) {
-  console.error ('ERR'.bold.red + '  - ' + arg + '\n');
+  console.error (color ('ERR', 'red', 'bold') + '  - ' + arg + '\n');
   cDump (err);
   console.log ();
   console.error (err.stack);

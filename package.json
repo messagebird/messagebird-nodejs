@@ -4,7 +4,7 @@
   "description":       "A node.js wrapper for the MessageBird REST API",
   "main":              "index.js",
   "engines": {
-    "node":            ">=0.10.0"
+    "node":            ">=0.8.0"
   },
   "scripts": {
     "test":            "node test.js"
@@ -24,7 +24,5 @@
   "license":           "BSD-2-Clause",
   "homepage":          "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
   "dependencies": {},
-  "devDependencies": {
-    "colors":          "^1.1.2"
-  }
+  "devDependencies": {}
 }
