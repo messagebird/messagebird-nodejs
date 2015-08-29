@@ -104,7 +104,7 @@ process.on ('exit', function () {
     console.log ('\nDONE, no errors.\n');
     process.exit (0);
   } else {
-    console.log ('\nFAIL'.bold.red + ', ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\n');
+    console.log ('\n' + doColor ('FAIL', 'red', 'bold') + ', ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\n');
     process.exit (1);
   }
 });
