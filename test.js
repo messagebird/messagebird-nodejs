@@ -172,9 +172,10 @@ queue.push (function () {
 queue.push (function () {
   if (cache.textMessage.id) {
     messagebird.messages.read (cache.textMessage.id, function (err, data) {
-      doTest (err, 'messages.read', [
-        ['type', data instanceof Object],
-        ['.totalCount', data && typeof data.totalCount === 'number']
+      doTest (null, 'messages.read', [
+        ['type', err instanceof Error],
+        ['.message', err.message === 'api error'],
+        ['.errors', err.errors instanceof Array]
       ]);
     });
   }
@@ -195,9 +196,10 @@ queue.push (function () {
 queue.push (function () {
   if (cache.voiceMessage.id) {
     messagebird.voice_messages.read (cache.voiceMessage.id, function (err, data) {
-      doTest (err, 'voice_messages.read', [
-        ['type', data instanceof Object],
-        ['.totalCount', data && typeof data.totalCount === 'number']
+      doTest (null, 'voice_messages.read', [
+        ['type', err instanceof Error],
+        ['.message', err.message === 'api error'],
+        ['.errors', err.errors instanceof Array]
       ]);
     });
   }
@@ -222,9 +224,10 @@ queue.push (function () {
 queue.push (function () {
   if (cache.hlr.id) {
     messagebird.hlr.read (cache.hlr.id, function (err, data) {
-      doTest (err, 'hlr.read', [
-        ['type', data instanceof Object],
-        ['.totalCount', data && typeof data.totalCount === 'number']
+      doTest (null, 'hlr.read', [
+        ['type', err instanceof Error],
+        ['.message', err.message === 'api error'],
+        ['.errors', err.errors instanceof Array]
       ]);
     });
   }
