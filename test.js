@@ -39,37 +39,38 @@ var cache = {
 };
 
 
-function color (str, color, style) {
+function doColor (str, color, style) {
   var colors = {
-    red: '\033[31m',
-    green: '\033[32m',
-    yellow: '\033[33m'
+    red: '\u001b[31m',
+    green: '\u001b[32m',
+    yellow: '\u001b[33m'
   };
   var styles = {
-    normal: '\033[0m',
-    bold: '\033[1m'
+    normal: '\u001b[0m',
+    bold: '\u001b[1m'
   };
   var res = colors [color];
+
   if (style) {
     res += styles [style];
   }
-  res = res + str + styles ['normal'];
+  res = res + str + styles.normal;
   return res;
 }
 
 
 // Output
 function cGood (arg) {
-  console.log (color ('good', 'green', 'bold') + ' - ' + arg);
+  console.log (doColor ('good', 'green', 'bold') + ' - ' + arg);
 }
 
 function cFail (arg) {
-  console.error (color ('fail', 'red', 'bold') + ' - ' + arg);
+  console.error (doColor ('fail', 'red', 'bold') + ' - ' + arg);
   errors++;
 }
 
 function cInfo (arg) {
-  console.log (color ('info', 'yellow', 'bold') + ' - ' + arg);
+  console.log (doColor ('info', 'yellow', 'bold') + ' - ' + arg);
 }
 
 function cDump (arg) {
@@ -77,7 +78,7 @@ function cDump (arg) {
 }
 
 function cError (arg, err) {
-  console.error (color ('ERR', 'red', 'bold') + '  - ' + arg + '\n');
+  console.error (doColor ('ERR', 'red', 'bold') + '  - ' + arg + '\n');
   cDump (err);
   console.log ();
   console.error (err.stack);
