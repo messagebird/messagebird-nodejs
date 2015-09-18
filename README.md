@@ -1,7 +1,7 @@
-MessageBird REST API for node.js
+MessageBird REST API for Node.js
 ================================
 
-This repository contains the open source node.js lib for MessageBird's REST API.
+This repository contains the open source Node.js lib for MessageBird's REST API.
 Documentation can be found at: https://www.messagebird.com/developers/nodejs
 
 
@@ -10,7 +10,7 @@ Requirements
 
 - [Sign up](https://www.messagebird.com/en/signup) for a free MessageBird account
 - Create a new `access_key` in the [developers](https://www.messagebird.com/app/en/settings/developers/access) section
-- MessageBird REST API for node.js requires node.js >= 0.10 or io.js
+- MessageBird REST API for Node.js requires Node.js >= 0.10 or io.js
 
 
 Installation
@@ -70,4 +70,4 @@ Complete documentation, instructions, and examples are available at:
 
 License
 -------
-The MessageBird REST API for node.js is licensed under [The BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause). Copyright (c) 2014, MessageBird
+The MessageBird REST API for Node.js is licensed under [The BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause). Copyright (c) 2014, MessageBird
