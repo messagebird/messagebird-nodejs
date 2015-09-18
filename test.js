@@ -190,7 +190,7 @@ queue.push (function () {
 
 queue.push (function () {
   if (cache.textMessage.id) {
-    messagebird.messages.read (cache.textMessage.id, function (err, data) {
+    messagebird.messages.read (cache.textMessage.id, function (err) {
       doTest (null, 'messages.read', [
         ['type', err instanceof Error],
         ['.message', err.message === 'api error'],
@@ -214,7 +214,7 @@ queue.push (function () {
 
 queue.push (function () {
   if (cache.voiceMessage.id) {
-    messagebird.voice_messages.read (cache.voiceMessage.id, function (err, data) {
+    messagebird.voice_messages.read (cache.voiceMessage.id, function (err) {
       doTest (null, 'voice_messages.read', [
         ['type', err instanceof Error],
         ['.message', err.message === 'api error'],
@@ -242,7 +242,7 @@ queue.push (function () {
 
 queue.push (function () {
   if (cache.hlr.id) {
-    messagebird.hlr.read (cache.hlr.id, function (err, data) {
+    messagebird.hlr.read (cache.hlr.id, function (err) {
       doTest (null, 'hlr.read', [
         ['type', err instanceof Error],
         ['.message', err.message === 'api error'],
