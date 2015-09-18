@@ -94,7 +94,7 @@ process.on ('exit', function () {
   var timing = (Date.now () - testStart) / 1000;
 
   if (process.env.CIRCLE_ARTIFACTS) {
-    fs.rename ('./npm-debug.log', process.env.CIRCLE_ARTIFACTS + '/npm-debug.log', function () {});
+    fs.rename ('./npm-debug.log', process.env.CIRCLE_ARTIFACTS + '/npm-debug-' + process.versions.node + '.log', function () {});
   }
 
   console.log ();
