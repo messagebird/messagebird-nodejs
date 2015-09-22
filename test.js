@@ -41,11 +41,11 @@ var cache = {
 
 function doColor (str, color) {
   var colors = {
-    red: '\u001b[1m\u001b[31m',
-    green: '\u001b[1m\u001b[32m',
-    yellow: '\u001b[1m\u001b[33m',
+    red: '\u001b[91m',
+    green: '\u001b[92m',
+    yellow: '\u001b[93m',
 
-    reset: '\u001b[0m'
+    reset: '\u001b[39m'
   };
 
   return colors [color] + str + colors.reset;
