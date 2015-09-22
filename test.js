@@ -39,38 +39,30 @@ var cache = {
 };
 
 
-function doColor (str, color, style) {
+function doColor (str, color) {
   var colors = {
-    red: '\u001b[31m',
-    green: '\u001b[32m',
-    yellow: '\u001b[33m'
-  };
-  var styles = {
-    normal: '\u001b[0m',
-    bold: '\u001b[1m'
-  };
-  var res = colors [color];
+    red: '\u001b[1m\u001b[31m',
+    green: '\u001b[1m\u001b[32m',
+    yellow: '\u001b[1m\u001b[33m',
 
-  if (style) {
-    res += styles [style];
-  }
-  res = res + str + styles.normal;
-  return res;
+    reset: '\u001b[0m'
+  };
+
+  return colors [color] + str + colors.reset;
 }
-
 
 // Output
 function cGood (arg) {
-  console.log (doColor ('good', 'green', 'bold') + ' - ' + arg);
+  console.log (doColor ('good', 'green') + ' - ' + arg);
 }
 
 function cFail (arg) {
-  console.error (doColor ('fail', 'red', 'bold') + ' - ' + arg);
+  console.error (doColor ('fail', 'red') + ' - ' + arg);
   errors++;
 }
 
 function cInfo (arg) {
-  console.log (doColor ('info', 'yellow', 'bold') + ' - ' + arg);
+  console.log (doColor ('info', 'yellow') + ' - ' + arg);
 }
 
 function cDump (arg) {
@@ -78,7 +70,7 @@ function cDump (arg) {
 }
 
 function cError (arg, err) {
-  console.error (doColor ('ERR', 'red', 'bold') + '  - ' + arg + '\n');
+  console.error (doColor ('ERR', 'red') + '  - ' + arg + '\n');
   cDump (err);
   console.log ();
   console.error (err.stack);
@@ -104,7 +96,7 @@ process.on ('exit', function () {
     console.log ('\nDONE, no errors.\n');
     process.exit (0);
   } else {
-    console.log ('\n' + doColor ('FAIL', 'red', 'bold') + ', ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\n');
+    console.log ('\n' + doColor ('FAIL', 'red') + ', ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\n');
     process.exit (1);
   }
 });
