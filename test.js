@@ -4,7 +4,7 @@ var fs = require ('fs');
 
 var accessKey = process.env.MB_ACCESSKEY || null;
 var timeout = process.env.MB_TIMEOUT || 5000;
-var number = process.env.MB_NUMBER || 31610948431;
+var number = parseInt (process.env.MB_NUMBER, 10) || 31610948431;
 
 var testStart = Date.now ();
 var errors = 0;
@@ -182,12 +182,19 @@ queue.push (function () {
 
 queue.push (function () {
   if (cache.textMessage.id) {
-    messagebird.messages.read (cache.textMessage.id, function (err) {
-      doTest (null, 'messages.read', [
-        ['type', err instanceof Error],
-        ['.message', err.message === 'api error'],
-        ['.errors', err.errors instanceof Array]
-      ]);
+    messagebird.messages.read (cache.textMessage.id, function (err, data) {
+      if (accessType === 'TEST') {
+        doTest (null, 'messages.read', [
+          ['type', err instanceof Error],
+          ['.message', err.message === 'api error'],
+          ['.errors', err.errors instanceof Array]
+        ]);
+      } else {
+        doTest (err, 'messages.read', [
+          ['type', data instanceof Object],
+          ['.body', data && data.body === cache.textMessage.body]
+        ]);
+      }
     });
   }
 });
@@ -206,12 +213,19 @@ queue.push (function () {
 
 queue.push (function () {
   if (cache.voiceMessage.id) {
-    messagebird.voice_messages.read (cache.voiceMessage.id, function (err) {
-      doTest (null, 'voice_messages.read', [
-        ['type', err instanceof Error],
-        ['.message', err.message === 'api error'],
-        ['.errors', err.errors instanceof Array]
-      ]);
+    messagebird.voice_messages.read (cache.voiceMessage.id, function (err, data) {
+      if (accessType === 'TEST') {
+        doTest (null, 'voice_messages.read', [
+          ['type', err instanceof Error],
+          ['.message', err.message === 'api error'],
+          ['.errors', err.errors instanceof Array]
+        ]);
+      } else {
+        doTest (err, 'voice_messages.read', [
+          ['type', data instanceof Object],
+          ['.body', data && data.body === cache.voiceMessage.body]
+        ]);
+      }
     });
   }
 });
@@ -234,12 +248,19 @@ queue.push (function () {
 
 queue.push (function () {
   if (cache.hlr.id) {
-    messagebird.hlr.read (cache.hlr.id, function (err) {
-      doTest (null, 'hlr.read', [
-        ['type', err instanceof Error],
-        ['.message', err.message === 'api error'],
-        ['.errors', err.errors instanceof Array]
-      ]);
+    messagebird.hlr.read (cache.hlr.id, function (err, data) {
+      if (accessType === 'TEST') {
+        doTest (null, 'hlr.read', [
+          ['type', err instanceof Error],
+          ['.message', err.message === 'api error'],
+          ['.errors', err.errors instanceof Array]
+        ]);
+      } else {
+        doTest (err, 'hlr.read', [
+          ['type', data instanceof Object],
+          ['.msisdn', data && data.msisdn === number]
+        ]);
+      }
     });
   }
 });
