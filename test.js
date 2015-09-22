@@ -1,3 +1,4 @@
+var pkg = require ('./package.json');
 var MessageBird = require ('./');
 var messagebird;
 var fs = require ('fs');
@@ -305,6 +306,8 @@ queue.push (function () {
 if (accessKey) {
   accessType = accessKey.split ('_') [0] .toUpperCase ();
   cInfo ('Running test.js');
+  cInfo ('node ' + process.version);
+  cInfo (pkg.name + ' v' + pkg.version);
   cInfo ('Using ' + accessType + ' access key\n');
 
   messagebird = new MessageBird.client (accessKey, timeout);
