@@ -1,43 +1,43 @@
-var pkg = require ('./package.json');
-var MessageBird = require ('./');
-var messagebird;
-var fs = require ('fs');
+var pkg = require ('./package.json'),
+    MessageBird = require ('./'),
+    messagebird,
+    fs = require ('fs'),
 
-var accessKey = process.env.MB_ACCESSKEY || null;
-var timeout = process.env.MB_TIMEOUT || 5000;
-var number = parseInt (process.env.MB_NUMBER, 10) || 31610948431;
+    accessKey = process.env.MB_ACCESSKEY || null,
+    timeout = process.env.MB_TIMEOUT || 5000,
+    number = parseInt (process.env.MB_NUMBER, 10) || 31610948431,
 
-var testStart = Date.now ();
-var errors = 0;
-var queue = [];
-var next = 0;
-var accessType = null;
+    testStart = Date.now (),
+    errors = 0,
+    queue = [],
+    next = 0,
+    accessType = null,
 
-var cache = {
-  textMessage: {
-    originator: 'node-js',
-    recipients: [number],
-    type: 'sms',
-    body: 'Test message from node ' + process.version,
-    gateway: 2
-  },
+    cache = {
+      textMessage: {
+        originator: 'node-js',
+        recipients: [number],
+        type: 'sms',
+        body: 'Test message from node ' + process.version,
+        gateway: 2
+      },
 
-  voiceMessage: {
-    originator: 'node-js',
-    recipients: [number],
-    body: 'Hello, this is a test message from node version ' + process.version,
-    language: 'en-gb',
-    voice: 'female',
-    repeat: 1,
-    ifMachine: 'continue'
-  },
+      voiceMessage: {
+        originator: 'node-js',
+        recipients: [number],
+        body: 'Hello, this is a test message from node version ' + process.version,
+        language: 'en-gb',
+        voice: 'female',
+        repeat: 1,
+        ifMachine: 'continue'
+      },
 
-  hlr: {},
+      hlr: {},
 
-  verify: {
-    recipient: number
-  }
-};
+      verify: {
+        recipient: number
+      }
+    };
 
 
 function doColor (str, color) {
@@ -119,8 +119,7 @@ function doNext () {
 //   ['feeds', typeof feeds === 'object']
 // ])
 function doTest (err, label, tests) {
-  var i;
-  var testErrors = [];
+  var testErrors = [], i;
 
   if (err instanceof Error) {
     cError (label, err);
