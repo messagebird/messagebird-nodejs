@@ -110,7 +110,7 @@
     "operator-assignment": [2, "always"],
     "operator-linebreak": [2, "none"],
     "padded-blocks": [2, "never"],
-    "quote-props": [2, "as-needed"],
+    "quote-props": [2, "consistent"],
     "quotes": [2, "single", "avoid-escape"],
     "radix": 2,
     "semi": 2,
