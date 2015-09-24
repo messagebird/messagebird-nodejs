@@ -309,7 +309,7 @@ if (accessKey) {
   cInfo (pkg.name + ' v' + pkg.version);
   cInfo ('Using ' + accessType + ' access key\n');
 
-  messagebird = MessageBird.client (accessKey, timeout);
+  messagebird = MessageBird (accessKey, timeout);
 
   queue[0]();
 } else {
