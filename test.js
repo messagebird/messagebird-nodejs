@@ -92,6 +92,8 @@ process.on ('exit', function () {
 
   console.log ();
   cInfo ('Timing: ' + timing + ' sec');
+  cInfo ('Memory usage:');
+  cDump (process.memoryUsage ());
 
   if (errors === 0) {
     console.log ('\nDONE, no errors.\n');
