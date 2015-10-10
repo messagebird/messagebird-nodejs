@@ -305,8 +305,8 @@ queue.push (function () {
 if (accessKey) {
   accessType = accessKey.split ('_') [0] .toUpperCase ();
   cInfo ('Running test.js');
-  cInfo ('node ' + process.version);
-  cInfo (pkg.name + ' v' + pkg.version);
+  cInfo ('Node.js ' + process.versions.node);
+  cInfo ('Module  ' + pkg.version);
   cInfo ('Using ' + accessType + ' access key\n');
 
   messagebird = MessageBird (accessKey, timeout);
