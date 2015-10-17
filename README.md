@@ -26,16 +26,18 @@ We have put some self-explanatory examples in the *examples* directory,but here 
 Let's go ahead and initialize the library first. Don't forget to replace `<YOUR_ACCESS_KEY>` with your actual access key.
 
 ```javascript
-var messagebird = require ('messagebird') ('<YOUR_ACCESS_KEY>');
+var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 ```
 
 Nice! Now we can send API requests through node. Let's use getting your balance overview as an example:
 
 ```javascript
 // Get your balance
-messagebird.balance.read (function (err, data) {
-  if (err) { return console.log (err); }
-  console.log (data);
+messagebird.balance.read(function (err, data) {
+  if (err) {
+    return console.log(err);
+  }
+  console.log(data);
 });
 
 // Result object:
