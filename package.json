@@ -15,9 +15,11 @@
   },
   "keywords": [
     "messagebird",
-    "SMS",
-    "TTS",
-    "HLR",
+    "sms",
+    "tts",
+    "hlr",
+    "2fa",
+    "otp",
     "voice"
   ],
   "author":            "MessageBird <info@messagebird.com> (http://messagebird.com/)",
