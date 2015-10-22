@@ -7,7 +7,7 @@
     "node":            ">=0.8.0"
   },
   "scripts": {
-    "test":            "node test.js"
+    "test":            "node lib/test.js"
   },
   "repository": {
     "type":            "git",
