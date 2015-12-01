@@ -22,9 +22,12 @@
     "otp",
     "voice"
   ],
-  "author":            "MessageBird <info@messagebird.com> (http://messagebird.com/)",
+  "author":            "MessageBird <support@messagebird.com> (https://www.messagebird.com/)",
+  "contributors": [
+    "Franklin van de Meent <fr@nkl.in> (https://frankl.in/)"
+  ],
   "license":           "BSD-2-Clause",
-  "homepage":          "https://bitbucket.org/messagebird/nodejs-rest-api#readme",
+  "homepage":          "https://github.com/messagebird/messagebird-nodejs",
   "dependencies": {},
   "devDependencies": {}
 }
