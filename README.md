@@ -1,7 +1,7 @@
 MessageBird REST API for Node.js
 ================================
 
-This repository contains the open source Node.js lib for MessageBird's REST API.
+This repository contains the open source Node.js client for MessageBird's REST API.
 Documentation can be found at: https://www.messagebird.com/developers/nodejs
 
 
@@ -22,7 +22,7 @@ Installation
 Usage
 -----
 
-We have put some self-explanatory examples in the *examples* directory,but here is a quick breakdown on how it works.
+We have put some self-explanatory examples in the *examples* directory, but here is a quick breakdown on how it works.
 Let's go ahead and initialize the library first. Don't forget to replace `<YOUR_ACCESS_KEY>` with your actual access key.
 
 ```javascript
