@@ -1,2 +1,0 @@
-
-var messagebird = require('messagebird');
