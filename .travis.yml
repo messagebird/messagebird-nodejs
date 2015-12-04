@@ -1,16 +1,10 @@
 language: node_js
 node_js:
-  - "stable"
-  - "5.0"
-  - "4.2"
-  - "4.1"
-  - "4.0"
+  - "5"
+  - "4"
   - "0.12"
-  - "0.11"
   - "0.10"
-  - "0.9"
   - "0.8"
-  - "0.6"
   - "iojs"
 env:
   - MB_ACCESSKEY="test_iQpAp0KCs5GCsMpDhIx2leuNB"
