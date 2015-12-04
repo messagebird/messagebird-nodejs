@@ -12,3 +12,5 @@ node_js:
   - "0.8"
   - "0.6"
   - "iojs"
+env:
+  - MB_ACCESSKEY="test_iQpAp0KCs5GCsMpDhIx2leuNB"
