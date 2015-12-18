@@ -1,17 +1,17 @@
 {
-  "name":              "messagebird",
-  "version":           "2.0.0",
-  "description":       "A node.js wrapper for the MessageBird REST API",
-  "main":              "lib/messagebird.js",
+  "name": "messagebird",
+  "version": "2.0.1",
+  "description": "A node.js wrapper for the MessageBird REST API",
+  "main": "lib/messagebird.js",
   "engines": {
-    "node":            ">=0.8.0"
+    "node": ">=0.8.0"
   },
   "scripts": {
-    "test":            "node lib/test.js"
+    "test": "node lib/test.js"
   },
   "repository": {
-    "type":            "git",
-    "url":             "git+ssh://git@github.com/messagebird/messagebird-nodejs.git"
+    "type": "git",
+    "url": "git+ssh://git@github.com/messagebird/messagebird-nodejs.git"
   },
   "keywords": [
     "messagebird",
@@ -22,12 +22,12 @@
     "otp",
     "voice"
   ],
-  "author":            "MessageBird <support@messagebird.com> (https://www.messagebird.com/)",
+  "author": "MessageBird <support@messagebird.com> (https://www.messagebird.com/)",
   "contributors": [
     "Franklin van de Meent <fr@nkl.in> (https://frankl.in/)"
   ],
-  "license":           "BSD-2-Clause",
-  "homepage":          "https://github.com/messagebird/messagebird-nodejs",
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/messagebird/messagebird-nodejs",
   "dependencies": {},
   "devDependencies": {}
 }
