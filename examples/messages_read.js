@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY');
+var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 messagebird.messages.read('<MESSAGE_ID>', function (err, response) {
   if (err) {
