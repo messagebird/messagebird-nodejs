@@ -17,7 +17,6 @@
     "complexity": [1, 8],
     "computed-property-spacing": [2, "never"],
     "consistent-return": 1,
-    "curly": [2, "all"],
     "default-case": 2,
     "dot-notation": [2, { "allowKeywords": true }],
     "dot-location": [2, "property"],
