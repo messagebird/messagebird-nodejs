@@ -128,7 +128,6 @@
     "spaced-comment": [2, "always"],
     "use-isnan": 2,
     "valid-typeof": 2,
-    "vars-on-top": 2,
     "wrap-regex": 0,
     "yoda": [2, "never"]
   }
