@@ -1,4 +1,4 @@
 {
     "accessKey": "YOUR ACCESS KEY",
-    "timeout": 5000 // default
+    "timeout": 5000
 }
