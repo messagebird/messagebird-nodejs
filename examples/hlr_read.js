@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+var messagebird = require('messagebird')
 
 messagebird.hlr.read('<HLR_ID>', function (err, response) {
   if (err) {

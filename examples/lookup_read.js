@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+var messagebird = require('messagebird')
 
 messagebird.lookup.read('31612345678', function (err, response) {
   if (err) {

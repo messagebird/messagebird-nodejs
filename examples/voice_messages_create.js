@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+var messagebird = require('messagebird')
 
 var params = {
   'recipients': [
@@ -8,9 +8,8 @@ var params = {
   'body': 'Hello, world'
 };
 
-messagebird.voice_messages.create(params, function (err, data) {
-  if (err) {
-    return console.log(err);
-  }
-  console.log(data);
-});
+messagebird.voice_messages.create(params, (err, data) => {
+  if (err)
+    return console.log(err)
+  console.log(data)
+})
