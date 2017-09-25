@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+var messagebird = require('messagebird')
 
 messagebird.verify.delete('<VERIFY_ID>', function (err, response) {
   if (err) {

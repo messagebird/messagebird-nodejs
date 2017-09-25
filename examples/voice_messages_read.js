@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+var messagebird = require('messagebird')
 
 messagebird.voice_messages.read('<VOICE_MESSAGE_ID>', function (err, data) {
   if (err) {
