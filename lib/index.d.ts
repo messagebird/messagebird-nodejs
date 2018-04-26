@@ -29,4 +29,4 @@ interface MessageBird {
 
 declare function messagebird(accessKey: string, timeout?: number): MessageBird;
 
-export = messagebird;
+export default messagebird;
