@@ -3,6 +3,7 @@
   "version": "2.1.4",
   "description": "A node.js wrapper for the MessageBird REST API",
   "main": "lib/messagebird.js",
+  "typings": "./lib/index.d.ts",
   "engines": {
     "node": ">=0.8.0"
   },
