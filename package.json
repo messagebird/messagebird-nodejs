@@ -30,6 +30,6 @@
   "homepage": "https://github.com/messagebird/messagebird-nodejs",
   "dependencies": {},
   "devDependencies": {
-    "nock": "^9.6.1"
+    "nock": "^8.0.0"
   }
 }
