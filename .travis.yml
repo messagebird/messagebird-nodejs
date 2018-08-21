@@ -10,3 +10,6 @@ node_js:
   - "iojs"
 env:
   - MB_ACCESSKEY="test_iQpAp0KCs5GCsMpDhIx2leuNB"
+matrix:
+  allow_failures:
+    - node_js: iojs
