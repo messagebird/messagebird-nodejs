@@ -148,7 +148,7 @@ export type MessageBird = {
 	},
 	verify: {
 		read(id: string, callback: CallbackFn): void;
-		create(recipient: number, params: VerifyParameter | CallbackFn, callback?: CallbackFn): void;
+		create(recipient: string | string[], params: VerifyParameter | CallbackFn, callback?: CallbackFn): void;
 		delete(id: string, callback: CallbackFn): void;
 		verify(id: string, token: string, callback: CallbackFn): void;
 	},
