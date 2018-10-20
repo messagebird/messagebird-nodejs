@@ -108,13 +108,35 @@ export type VerifyParameter = {
 	language?: 'cy-gb' | 'da-dk' | 'de-de' | 'el-gr' | 'en-au' | 'en-gb' | 'en-gb-wls' | 'en-in' | 'en-us' | 'es-es' | 'es-mx' | 'es-us' | 'fr-ca' | 'fr-fr' | 'id-id' | 'is-is' | 'it-it' | 'ja-jp' | 'ko-kr' | 'ms-my' | 'nb-no' | 'nl-nl' | 'pl-pl' | 'pt-br' | 'pt-pt' | 'ro-ro' | 'ru-ru' | 'sv-se' | 'ta-in' | 'th-th' | 'tr-tr' | 'vi-vn' | 'zh-cn' | 'zh-hk';
 }
 
+export type ContactParameter = {
+	/** The phone number of the contact. Required */
+	msisdn: string;
+	/** The first name of the contact. */
+	firstName?: string;
+	/** The last name of the contact. */
+	lastName?: string;
+	/** Custom fields of the contact. */
+	custom1?: string;
+	/** Custom fields of the contact. */
+	custom2?: string;
+	/** Custom fields of the contact. */
+	custom3?: string;
+	/** Custom fields of the contact. */
+	custom4?: string;
+}
+
+export type GroupParameter = {
+	/** The name of the group. Required */
+	name: string;
+}
+
 export type MessageBird = {
 	balance: {
 		read(callback: CallbackFn): void;
 	},
 	hlr: {
 		read(id: string, callback: CallbackFn): void;
-		create(msisdn: number, ref: string | CallbackFn , callback?: CallbackFn): void;
+		create(msisdn: number | string, ref: string | CallbackFn , callback?: CallbackFn): void;
 	},
 	messages: {
 		read(id: string, callback: CallbackFn): void;
@@ -136,8 +158,27 @@ export type MessageBird = {
 			read(phoneNumber: string, countryCode: string | CallbackFn, callback?: CallbackFn): void;
 			create(phoneNumber: string, params: HLRParameter | CallbackFn , callback?: CallbackFn): void;
 		};
-		create(phoneNumber: string, params: object, callback: Function): void;
 	},
+	contacts: {
+		create(phoneNumber: string, params: ContactParameter | CallbackFn, callback?: CallbackFn): void;
+		delete(id: string, callback: CallbackFn): void;
+		list(limit: number | CallbackFn, offset?: number, callback?: CallbackFn): void;
+		read(id: string, callback: CallbackFn): void;
+		update(id: string, params: ContactParameter, callback: CallbackFn): void;
+		listGroups(contactId: string, limit?: number | CallbackFn, offset?: number, callback?: CallbackFn): void;
+		listMessages(contactId: string, limit?: number | CallbackFn, offset?: number, callback?: CallbackFn): void;
+	},
+	groups: {
+		create(name: string, params: GroupParameter | CallbackFn, callback?: CallbackFn): void;
+		delete(id: string, callback: CallbackFn): void;
+		list(limit: number | CallbackFn, offset?: number, callback?: CallbackFn): void;
+		read(id: string, callback: CallbackFn): void;
+		update(id: string, params: GroupParameter, callback: CallbackFn): void;
+		addContacts(groupId: string, contactIds: string[], callback: CallbackFn): void;
+		getAddContactsQueryString(contactIds: string[]): string;
+		listContacts(groupId: string, limit?: number | CallbackFn, offset?: number, callback?: CallbackFn): void;
+		removeContact(groupId: string, contactId: string, callback: CallbackFn): void;
+	}
 }
 
 declare function messagebird(accessKey: string, timeout?: number): MessageBird;
