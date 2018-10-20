@@ -72,8 +72,6 @@ export type HLRParameter = {
 }
 
 export type VerifyParameter = {
-	/** The telephone number that you want to verify. Required */
-	recipient: number | string;
 	/**
 	 * The sender of the message. This can be a telephone number (including country code) or an alphanumeric string. In case of an alphanumeric string, the maximum length is 11 characters.
 	 * Default: Code
