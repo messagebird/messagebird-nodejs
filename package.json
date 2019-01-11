@@ -3,11 +3,13 @@
   "version": "2.3.1",
   "description": "A node.js wrapper for the MessageBird REST API",
   "main": "lib/messagebird.js",
+  "types": "types",
   "engines": {
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "node lib/test.js"
+    "test": "node lib/test.js",
+    "dtslint": "dtslint types"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
   "homepage": "https://github.com/messagebird/messagebird-nodejs",
   "dependencies": {},
   "devDependencies": {
+    "dtslint": "^0.4.2",
     "nock": "^8.0.0"
   }
 }
