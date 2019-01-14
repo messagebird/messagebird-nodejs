@@ -1,4 +1,4 @@
-import * as messagebird from 'messagebird';
+import messagebird from 'messagebird';
 
 const mbClient = messagebird('<AccessKey>');
 

@@ -1,4 +1,4 @@
-import * as messagebird from 'messagebird';
+import messagebird from 'messagebird';
 
 // $ExpectType MessageBird
 messagebird('<AccessKey>');
