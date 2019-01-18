@@ -1,6 +1,6 @@
 {
   "name": "messagebird",
-  "version": "3.2.0",
+  "version": "2.2.0",
   "description": "A node.js wrapper for the MessageBird REST API",
   "main": "lib/messagebird.js",
   "engines": {
