@@ -2,17 +2,24 @@
 
 import { Balance } from './balance';
 import { Hlr, HLRParameter } from './hlr';
-import { Message, MessageParameters } from 'messages';
+import { Message, MessageParameters } from './messages';
 import {
   VoiceMessage,
   VoiceParameters,
   VoiceParametersWithRecipients
-} from 'voice_messages';
-import { msisdn } from 'general';
-import { Verify, VerifyParameter } from 'verify';
-import { Lookup } from 'lookup';
-import { Contact, ContactParameter } from 'contact';
-import { GroupParameter } from 'group';
+} from './voice_messages';
+import { msisdn } from './general';
+import { Verify, VerifyParameter } from './verify';
+import { Lookup } from './lookup';
+import { Contact, ContactParameter } from './contact';
+import { GroupParameter } from './group';
+import {
+  ConversationParameter,
+  SendResponse,
+  UpdateConversationParameters,
+  ReplyConversationParameters,
+  Webhooks
+} from './conversations';
 
 type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
 
@@ -138,6 +145,92 @@ export interface MessageBird {
       contactId: string,
       callback: CallbackFn
     ): void;
+  };
+  conversations: {
+    /**
+     * Sends a new message to a channel-specific user identifier (e.g. phone
+     * number). If an active conversation already exists for the recipient,
+     * this conversation will be resumed. If an active conversation does not
+     * exist, a new one will be created.
+     */
+    send(
+      params: ConversationParameter,
+      callback: CallbackFn<SendResponse>
+    ): void;
+    /**
+     * Starts a new conversation from a channel-specific user identifier,
+     * such as a phone number, and sends a first message. If an active
+     * conversation already exists for the recipient, this conversation will
+     * be resumed.
+     */
+    start(params: ConversationParameter, callback: CallbackFn): void;
+    /**
+     * Retrieves all conversations for this account. By default,
+     * conversations are sorted by their lastReceivedDatetime field so that
+     * conversations with new messages appear first.
+     */
+    list(limit: number, offset: number, callback: CallbackFn): void;
+    /**
+     * Retrieves a single conversation.
+     */
+    read(id: string, callback: CallbackFn): void;
+    /**
+     * Update Conversation Status.
+     */
+    update(
+      id: string,
+      params: UpdateConversationParameters,
+      callback: CallbackFn
+    ): void;
+    /**
+     * Adds a new message to an existing conversation and sends it to the
+     * contact that you're in conversation with.
+     */
+    reply(
+      id: string,
+      params: ReplyConversationParameters,
+      callback: CallbackFn
+    ): void;
+    /**
+     * Lists the messages for a contact.
+     */
+    listMessages(
+      contactId: string,
+      limit: number,
+      offset: number,
+      callback: CallbackFn
+    ): void;
+    /**
+     * View a message
+     */
+    readMessage(id: string, callback: CallbackFn): void;
+
+    webhooks: {
+      /**
+       * Creates a new webhook.
+       */
+      create(params: Webhooks.CreateParameters, callback: CallbackFn): void;
+      /**
+       * Retrieves an existing webhook by id.
+       */
+      read(id: string, callback: CallbackFn): void;
+      /**
+       * Updates a webhook.
+       */
+      update(
+        id: string,
+        params: Webhooks.UpdateParameters,
+        callback: CallbackFn
+      ): void;
+      /**
+       * Retrieves a list of webhooks.
+       */
+      list(limit: number, offset: number, callback: CallbackFn): void;
+      /**
+       * Deletes webhook
+       */
+      delete(id: string, callback: CallbackFn): void;
+    };
   };
 }
 
