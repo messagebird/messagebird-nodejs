@@ -1,0 +1,261 @@
+// TypeScript Version: 3.0
+
+import { Balance } from './balance';
+import { Hlr, HLRParameter } from './hlr';
+import { Message, MessageParameters } from './messages';
+import {
+  VoiceMessage,
+  VoiceParameters,
+  VoiceParametersWithRecipients
+} from './voice_messages';
+import { msisdn } from './general';
+import { Verify, VerifyParameter } from './verify';
+import { Lookup } from './lookup';
+import { Contact, ContactParameter } from './contact';
+import { GroupParameter } from './group';
+import {
+  ConversationParameter,
+  SendResponse,
+  UpdateConversationParameters,
+  ReplyConversationParameters,
+  Webhooks
+} from './conversations';
+import { MmsObject, MmsParameter } from './mms';
+
+type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
+
+export interface MessageBird {
+  balance: {
+    /** Get account balance */
+    read(callback: CallbackFn<Balance>): void;
+  };
+  hlr: {
+    read(id: string, callback: CallbackFn<Hlr>): void;
+    create(msisdn: msisdn, callback?: CallbackFn<Hlr>): void;
+    create(msisdn: msisdn, ref: string, callback: CallbackFn<Hlr>): void;
+  };
+  messages: {
+    read(id: string, callback: CallbackFn<Message>): void;
+    create(params: MessageParameters, callback: CallbackFn<Message>): void;
+  };
+  voice_messages: {
+    read(id: string, callback: CallbackFn<VoiceMessage>): void;
+    create(
+      recipients: msisdn[],
+      params: VoiceParameters,
+      callback: CallbackFn<VoiceMessage>
+    ): void;
+    create(
+      params: VoiceParametersWithRecipients,
+      callback: CallbackFn<VoiceMessage>
+    ): void;
+  };
+  verify: {
+    read(id: string, callback: CallbackFn<Verify>): void;
+    create(
+      recipient: msisdn | [msisdn],
+      params: VerifyParameter,
+      callback: CallbackFn<Verify>
+    ): void;
+    create(recipient: msisdn | [msisdn], callback: CallbackFn<Verify>): void;
+    delete(id: string, callback: CallbackFn<void>): void;
+    verify(
+      /** A unique random ID which is created on the MessageBird platform and is returned upon creation of the object. */
+      id: string,
+      /** An unique token which was sent to the recipient upon creation of the object. */
+      token: string,
+      callback: CallbackFn<Verify>
+    ): void;
+  };
+  lookup: {
+    read(
+      phoneNumber: msisdn,
+      countryCode: string,
+      callback: CallbackFn<Lookup>
+    ): void;
+    read(phoneNumber: msisdn, callback: CallbackFn<Lookup>): void;
+    hlr: {
+      read(
+        phoneNumber: msisdn,
+        countryCode: string,
+        callback: CallbackFn<Hlr>
+      ): void;
+      read(phoneNumber: msisdn, callback: CallbackFn<Hlr>): void;
+      create(
+        phoneNumber: msisdn,
+        params: HLRParameter,
+        callback: CallbackFn<Hlr>
+      ): void;
+      create(phoneNumber: msisdn, callback: CallbackFn<Hlr>): void;
+    };
+  };
+  contacts: {
+    create(
+      phoneNumber: string,
+      params: ContactParameter,
+      callback: CallbackFn<Contact>
+    ): void;
+    create(phoneNumber: string, callback: CallbackFn<Contact>): void;
+    delete(id: string, callback: CallbackFn<void>): void;
+    list(limit: number, offset: number, callback: CallbackFn<Contact[]>): void;
+    list(callback: CallbackFn<Contact[]>): void;
+    read(id: string, callback: CallbackFn<Contact>): void;
+    update(
+      id: string,
+      params: ContactParameter,
+      callback: CallbackFn<Contact>
+    ): void;
+    listGroups(
+      contactId: string,
+      limit: number,
+      offset: number,
+      callback: CallbackFn
+    ): void;
+    listGroups(contactId: string, callback: CallbackFn): void;
+    listMessages(contactId: string, callback: CallbackFn): void;
+    listMessages(
+      contactId: string,
+      limit: number,
+      offset: number,
+      callback: CallbackFn
+    ): void;
+  };
+  groups: {
+    create(name: string, params: GroupParameter, callback: CallbackFn): void;
+    create(name: string, callback: CallbackFn): void;
+    delete(id: string, callback: CallbackFn): void;
+    list(limit: number, offset: number, callback: CallbackFn): void;
+    list(callback: CallbackFn): void;
+    read(id: string, callback: CallbackFn): void;
+    update(id: string, params: GroupParameter, callback: CallbackFn): void;
+    addContacts(
+      groupId: string,
+      contactIds: string[],
+      callback: CallbackFn
+    ): void;
+    getAddContactsQueryString(contactIds: string[]): string;
+    listContacts(
+      groupId: string,
+      limit: number,
+      offset: number,
+      callback: CallbackFn
+    ): void;
+    listContacts(groupId: string, callback: CallbackFn): void;
+    removeContact(
+      groupId: string,
+      contactId: string,
+      callback: CallbackFn
+    ): void;
+  };
+  conversations: {
+    /**
+     * Sends a new message to a channel-specific user identifier (e.g. phone
+     * number). If an active conversation already exists for the recipient,
+     * this conversation will be resumed. If an active conversation does not
+     * exist, a new one will be created.
+     */
+    send(
+      params: ConversationParameter,
+      callback: CallbackFn<SendResponse>
+    ): void;
+    /**
+     * Starts a new conversation from a channel-specific user identifier,
+     * such as a phone number, and sends a first message. If an active
+     * conversation already exists for the recipient, this conversation will
+     * be resumed.
+     */
+    start(params: ConversationParameter, callback: CallbackFn): void;
+    /**
+     * Retrieves all conversations for this account. By default,
+     * conversations are sorted by their lastReceivedDatetime field so that
+     * conversations with new messages appear first.
+     */
+    list(limit: number, offset: number, callback: CallbackFn): void;
+    /**
+     * Retrieves a single conversation.
+     */
+    read(id: string, callback: CallbackFn): void;
+    /**
+     * Update Conversation Status.
+     */
+    update(
+      id: string,
+      params: UpdateConversationParameters,
+      callback: CallbackFn
+    ): void;
+    /**
+     * Adds a new message to an existing conversation and sends it to the
+     * contact that you're in conversation with.
+     */
+    reply(
+      id: string,
+      params: ReplyConversationParameters,
+      callback: CallbackFn
+    ): void;
+    /**
+     * Lists the messages for a contact.
+     */
+    listMessages(
+      contactId: string,
+      limit: number,
+      offset: number,
+      callback: CallbackFn
+    ): void;
+    /**
+     * View a message
+     */
+    readMessage(id: string, callback: CallbackFn): void;
+
+    webhooks: {
+      /**
+       * Creates a new webhook.
+       */
+      create(params: Webhooks.CreateParameters, callback: CallbackFn): void;
+      /**
+       * Retrieves an existing webhook by id.
+       */
+      read(id: string, callback: CallbackFn): void;
+      /**
+       * Updates a webhook.
+       */
+      update(
+        id: string,
+        params: Webhooks.UpdateParameters,
+        callback: CallbackFn
+      ): void;
+      /**
+       * Retrieves a list of webhooks.
+       */
+      list(limit: number, offset: number, callback: CallbackFn): void;
+      /**
+       * Deletes webhook
+       */
+      delete(id: string, callback: CallbackFn): void;
+    };
+    /**
+     * MessageBird's MMS Messaging API enables you to send and receive MMS messages to and from a selected group of countries. Currently you can only send MMS within the US and Canada.
+     *
+     * Messages are identified by a unique ID. And with this ID you can always check the status of the MMS message through the provided endpoint.
+     */
+    mms: {
+      /**
+       * Retrieves the information of an existing sent MMS message. You only need to supply the unique message id that was returned upon creation.
+       */
+      read(id: string, callback: CallbackFn<MmsObject>): void;
+
+      /**
+       *
+       * Creates a new MMS message object. MessageBird returns the created message object with each request. Per request, a max of 50 recipients can be entered.
+       */
+      create(params: MmsParameter, callback: CallbackFn<MmsObject>): void;
+
+      list(limit: number, offset: number, callback: CallbackFn): void;
+
+      delete(id: string, callback: CallbackFn): void;
+    };
+  };
+}
+
+declare function messagebird(accessKey: string, timeout?: number): MessageBird;
+
+export default messagebird;

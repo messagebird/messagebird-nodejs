@@ -17,3 +17,8 @@ matrix:
   allow_failures:
     - node_js: "0.8"
     - node_js: "iojs"
+
+jobs:
+  include:
+   - stage: lint
+     script: npm run dtslint

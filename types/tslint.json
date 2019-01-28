@@ -1,0 +1,7 @@
+{
+  "extends": "dtslint/dtslint.json",
+  "rules": {
+    // Use prettier for formating
+    "no-padding": false
+  }
+}
