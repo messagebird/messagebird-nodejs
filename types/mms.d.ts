@@ -1,5 +1,5 @@
-import { datetime, msisdn } from 'general';
-import { Recipients } from 'messages';
+import { datetime, msisdn } from './general';
+import { Recipients } from './messages';
 
 export interface MmsObject {
   /** A unique ID which is created on the MessageBird platform and is returned upon creation of the object. */

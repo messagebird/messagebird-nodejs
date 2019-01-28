@@ -1,5 +1,5 @@
-import { datetime } from 'general';
-import { Hlr } from 'hlr';
+import { datetime } from './general';
+import { Hlr } from './hlr';
 
 export type numberType =
   | 'fixed line'

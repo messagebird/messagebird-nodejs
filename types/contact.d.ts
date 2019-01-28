@@ -1,4 +1,4 @@
-import { datetime } from 'general';
+import { datetime } from './general';
 
 export interface Contact {
   /** A unique random ID which is created on the MessageBird platform and is returned upon creation of the object. */

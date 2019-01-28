@@ -1,5 +1,5 @@
-import { Language } from 'parsimmon';
-import { datetime } from 'general';
+import { datetime } from './general';
+import { languages } from './voice_messages';
 
 export interface StartConversationParameter {
   /** The type of the message content. */
@@ -44,17 +44,21 @@ export interface TextContent {
 
 export interface ImageContent {
   /** Required for type image. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
-  image: object;
+  image: File;
 }
 
 export interface AudioContent {
   /** Required for type video. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
-  video: object;
+  video: File;
 }
 
 export interface FileContent {
   /** Required for type file. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
-  file: object;
+  file: File;
+}
+
+export interface File {
+  url: string;
 }
 
 export interface LocationContent {
@@ -87,7 +91,7 @@ export interface HSMLanguage {
    */
   policy: 'fallback' | 'deterministic';
   /** The code of the language or locale to use, accepts both language and language_locale formats (e.g., en or en_US). */
-  code: Language;
+  code: languages;
 }
 
 export type HSMLocalizableParameters =
