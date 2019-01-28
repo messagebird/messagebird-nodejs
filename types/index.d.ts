@@ -20,6 +20,7 @@ import {
   ReplyConversationParameters,
   Webhooks
 } from './conversations';
+import { MmsObject, MmsParameter } from './mms';
 
 type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
 
@@ -229,6 +230,27 @@ export interface MessageBird {
       /**
        * Deletes webhook
        */
+      delete(id: string, callback: CallbackFn): void;
+    };
+    /**
+     * MessageBird's MMS Messaging API enables you to send and receive MMS messages to and from a selected group of countries. Currently you can only send MMS within the US and Canada.
+     *
+     * Messages are identified by a unique ID. And with this ID you can always check the status of the MMS message through the provided endpoint.
+     */
+    mms: {
+      /**
+       * Retrieves the information of an existing sent MMS message. You only need to supply the unique message id that was returned upon creation.
+       */
+      read(id: string, callback: CallbackFn<MmsObject>): void;
+
+      /**
+       *
+       * Creates a new MMS message object. MessageBird returns the created message object with each request. Per request, a max of 50 recipients can be entered.
+       */
+      create(params: MmsParameter, callback: CallbackFn<MmsObject>): void;
+
+      list(limit: number, offset: number, callback: CallbackFn): void;
+
       delete(id: string, callback: CallbackFn): void;
     };
   };
