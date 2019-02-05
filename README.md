@@ -62,6 +62,26 @@ Or in case of an error:
 }
 ```
 
+Verifying Signatures
+-------------
+
+We sign our HTTP requests to allow you to verify that they actually came from us. Let's use Signature middleware to verify webhooks.
+
+```
+var Signature = require('messagebird/lib/signature');
+
+// Replace <YOUR_SIGNING_KEY> with your actual signing key.
+var verifySignature = new Signature('<YOUR_SIGNING_KEY>');
+
+// Retrieve the raw body as a buffer.
+app.use(require('body-parser').raw({ type: '*/*' }));
+
+// Verified webhook.
+app.get('/webhook', verifySignature, function(req, res) {
+    res.send("Verified");
+});
+
+```
 
 Documentation
 -------------
