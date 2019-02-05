@@ -65,7 +65,7 @@ Or in case of an error:
 Verifying Signatures
 -------------
 
-We sign our HTTP requests to allow you to verify that they actually came from us. Let's use Signature middleware to verify webhooks.
+We sign our HTTP requests to allow you to verify that they actually came from us (authentication) and that they haven't been altered along the way (integrity). For each HTTP request that MessageBird sends, a `MessageBird-Signature` and `MessageBird-Request-Timestamp` header is added. Signature middleware calculates a signature using the timestamp, query parameters and body then compares the calculated signature to `MessageBird-Signature` header. If they are not same or request expired, middleware throws an error. This way, you will know if the request is valid or not. If you want to verify request manually, you can check [here](https://developers.messagebird.com/docs/verify-http-requests). Let's use Signature middleware to verify webhooks.
 
 ```
 var Signature = require('messagebird/lib/signature');
