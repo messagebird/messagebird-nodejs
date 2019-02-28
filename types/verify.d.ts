@@ -1,6 +1,6 @@
-import { msisdn, datetime } from 'general';
-import { dataCoding } from 'messages';
-import { languages } from 'voice_messages';
+import { msisdn, datetime } from './general';
+import { dataCoding } from './messages';
+import { languages } from './voice_messages';
 
 export interface Verify {
   /** A unique random ID which is created on the MessageBird platform and is returned upon creation of the object */
