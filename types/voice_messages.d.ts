@@ -1,4 +1,4 @@
-import { datetime, msisdn } from 'general';
+import { datetime, msisdn } from './general';
 
 export type languages =
   | 'cy-gb'
