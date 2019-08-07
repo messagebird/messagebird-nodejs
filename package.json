@@ -1,20 +1,57 @@
 {
-  "name": "messagebird",
-  "version": "2.4.1",
+  "_from": "messagebird@^2.4.1",
+  "_id": "messagebird@2.4.1",
+  "_inBundle": false,
+  "_integrity": "sha512-ZsWotkSG/5zV/5ScNb0FGqOq74WTSEY5bQGY77xcGflTuXxPYa7GuwZXQYVUb5lHLi8gzz5tluJBkgXXfSUWSA==",
+  "_location": "/messagebird",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "messagebird@^2.4.1",
+    "name": "messagebird",
+    "escapedName": "messagebird",
+    "rawSpec": "^2.4.1",
+    "saveSpec": null,
+    "fetchSpec": "^2.4.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/messagebird/-/messagebird-2.4.1.tgz",
+  "_shasum": "c136c9d9d3659b00ce54374fd7a3b02b5123efb8",
+  "_spec": "messagebird@^2.4.1",
+  "_where": "/Users/alexis/WebstormProjects/immobeut-backend/achat-jeremy",
+  "author": {
+    "name": "MessageBird",
+    "email": "support@messagebird.com",
+    "url": "https://www.messagebird.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/messagebird/messagebird-nodejs/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Franklin van de Meent",
+      "email": "fr@nkl.in",
+      "url": "https://frankl.in/"
+    }
+  ],
+  "dependencies": {
+    "safe-buffer": "^5.1.2",
+    "scmp": "^2.0.0"
+  },
+  "deprecated": false,
   "description": "A node.js wrapper for the MessageBird REST API",
-  "main": "lib/messagebird.js",
-  "types": "types",
+  "devDependencies": {
+    "dtslint": "^0.4.2",
+    "nock": "^10.0.6"
+  },
   "engines": {
     "node": ">=0.8.0"
   },
-  "scripts": {
-    "test": "node lib/test.js",
-    "dtslint": "dtslint types"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/messagebird/messagebird-nodejs.git"
-  },
+  "homepage": "https://github.com/messagebird/messagebird-nodejs",
   "keywords": [
     "messagebird",
     "sms",
@@ -24,19 +61,17 @@
     "otp",
     "voice"
   ],
-  "author": "MessageBird <support@messagebird.com> (https://www.messagebird.com/)",
-  "contributors": [
-    "Franklin van de Meent <fr@nkl.in> (https://frankl.in/)"
-  ],
   "license": "BSD-2-Clause",
-  "homepage": "https://github.com/messagebird/messagebird-nodejs",
-  "dependencies": {
-    "safe-buffer": "^5.1.2",
-    "scmp": "^2.0.0",
-    "sort-object": "^3.0.2"
+  "main": "lib/messagebird.js",
+  "name": "messagebird",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/messagebird/messagebird-nodejs.git"
   },
-  "devDependencies": {
-    "dtslint": "^0.4.2",
-    "nock": "^8.0.0"
-  }
+  "scripts": {
+    "dtslint": "dtslint types",
+    "test": "node lib/test.js"
+  },
+  "types": "types",
+  "version": "2.4.1"
 }
