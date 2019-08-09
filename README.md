@@ -83,6 +83,14 @@ app.get('/webhook', verifySignature, function(req, res) {
 
 ```
 
+Conversations Whatsapp Sandbox
+-------------
+
+To use the whatsapp sandbox you need to add `"CONVERSATIONS_WHATSAPP_SANDBOX"` to the list of features you want enabled. Don't forget to replace `<YOUR_ACCESS_KEY>` with your actual access key.
+
+```javascript
+var messagebird = require('messagebird')("<YOUR_ACCESS_KEY>", null, ["CONVERSATIONS_WHATSAPP_SANDBOX"]);
+```
 Documentation
 -------------
 
