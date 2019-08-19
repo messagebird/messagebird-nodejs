@@ -21,6 +21,7 @@ import {
   Webhooks
 } from './conversations';
 import { MmsObject, MmsParameter } from './mms';
+import { Features } from 'feature';
 
 type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
 
@@ -256,6 +257,6 @@ export interface MessageBird {
   };
 }
 
-declare function messagebird(accessKey: string, timeout?: number): MessageBird;
+declare function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird;
 
 export default messagebird;
