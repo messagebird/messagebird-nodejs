@@ -1,11 +1,11 @@
 {
   "name": "messagebird",
-  "version": "2.4.1",
+  "version": "3.0.0",
   "description": "A node.js wrapper for the MessageBird REST API",
   "main": "lib/messagebird.js",
   "types": "types",
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
     "test": "node lib/test.js",
@@ -32,11 +32,10 @@
   "homepage": "https://github.com/messagebird/messagebird-nodejs",
   "dependencies": {
     "safe-buffer": "^5.1.2",
-    "scmp": "^2.0.0",
-    "sort-object": "^3.0.2"
+    "scmp": "^2.0.0"
   },
   "devDependencies": {
-    "dtslint": "^0.4.2",
-    "nock": "^8.0.0"
+    "dtslint": "^0.9.3",
+    "nock": "^11.3.2"
   }
 }
