@@ -21,7 +21,7 @@ import {
   Webhooks
 } from './conversations';
 import { MmsObject, MmsParameter } from './mms';
-import { Features } from 'feature';
+import { Features } from './feature';
 
 type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
 
