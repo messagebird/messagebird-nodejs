@@ -13,6 +13,8 @@ import { Verify, VerifyParameter } from './verify';
 import { Lookup } from './lookup';
 import { Contact, ContactParameter } from './contact';
 import { GroupParameter } from './group';
+import { Recording } from './recordings';
+import { Call, CallParameter } from './calls';
 import {
   ConversationParameter,
   SendResponse,
@@ -255,6 +257,44 @@ export interface MessageBird {
       delete(id: string, callback: CallbackFn): void;
     };
   };
+   /**
+     * A recording describes a voice recording of a leg. You can initiate a recording of a leg by having a step in your callflow with the record action set.
+     */
+  calls: {
+    /**
+     * This request initiates an outbound call.
+     */
+    create(params: CallParameter, callback: CallbackFn<Call>): void;
+      /**
+     * This request retrieves a listing of all calls.
+     */
+    list(callback: CallbackFn<Call[]>): void;
+    /**
+     * This request retrieves a call resource. The single parameter is the unique ID that was returned upon creation.
+     */
+    read(callId: string, callback: CallbackFn<Call>): void;
+    /**
+     * This request will hang up all the legs of the call.
+     */
+    delete(callId: string, callback: CallbackFn): void;
+  },
+  /**
+   * A recording describes a voice recording of a leg. You can initiate a recording of a leg by having a step in your callflow with the record action set.
+   */
+  recordings: {
+    /**
+     * Lists all recordings
+     */
+    list(callId: string, legId: string, limit: number, offset: number, callback: CallbackFn<Recording[]>): void;
+    /**
+     * This request retrieves a recording resource. The parameters are the unique ID of the recording, the leg and the call with which the recording is associated.
+     */
+    read(callId: string, legId: string, recordingId: string, callback: CallbackFn<Recording>): void;
+    /**
+     * Downloads a recording
+     */
+    download(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
+  },
 }
 
 declare function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird;
