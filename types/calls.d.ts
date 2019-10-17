@@ -1,7 +1,7 @@
 import { datetime } from './general';
 import { languages } from './voice_messages';
 
-type transcribeLanguages =
+export type transcribeLanguages =
   'de-DE' |
   'en-AU' |
   'en-UK' |
@@ -38,14 +38,14 @@ export interface CallParameter {
   callFlow: CallFlowParameter;
 }
 
-interface StepParameter {
+export interface StepParameter {
   /** The name of the VoIP action. Possible values: transfer, say, play, pause, record, fetchCallFlow, sendKeys, hangup. */
   action: 'transfer' | 'say' | 'play' | 'pause' | 'record' | 'fetchCallFlow' | 'sendKeys' | 'hangup';
   /** Contains zero or more key-value pairs, where the key is the identifier of the option and value is the option value. */
   options?: StepOptions;
 }
 
-interface CallFlowParameter {
+export interface CallFlowParameter {
   /** The title of the call flow. */
   title: string;
   /** Says whether a full call recording is enabled on this call flow, the default value for this attribute is false. */
@@ -54,7 +54,7 @@ interface CallFlowParameter {
   steps: StepParameter[];
 }
 
-interface StepOptions {
+export interface StepOptions {
   /** The destination (E.164 formatted number, SIP URI or Client URI) to transfer a call to.  */
   destination?: string;
   /** The text to pronounce. Required when steps[].action is say. */
@@ -69,7 +69,10 @@ interface StepOptions {
   media?: string | object;
   /** The length of the pause in seconds. Required when steps[].action is pause. */
   length?: number;
-  /** Maximum length of a recording in seconds, when this time limit is reached, the recording will stop. It is used when steps[].action is record and it is optional with the default value being 0 which means no limit. */
+  /**
+   * Maximum length of a recording in seconds, when this time limit is reached, the recording will stop.
+   * It is used when steps[].action is record and it is optional with the default value being 0 which means no limit.
+   */
   maxLength?: number;
   /** Seconds of silence allowed before a recording is stopped. It is used when steps[].action is record and it is optional. If you omit this parameter, silence detection is disabled. */
   timeout?: number;

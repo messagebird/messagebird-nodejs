@@ -257,15 +257,15 @@ export interface MessageBird {
       delete(id: string, callback: CallbackFn): void;
     };
   };
-   /**
-     * A recording describes a voice recording of a leg. You can initiate a recording of a leg by having a step in your callflow with the record action set.
-     */
+  /**
+   * A recording describes a voice recording of a leg. You can initiate a recording of a leg by having a step in your callflow with the record action set.
+   */
   calls: {
     /**
      * This request initiates an outbound call.
      */
     create(params: CallParameter, callback: CallbackFn<Call>): void;
-      /**
+    /**
      * This request retrieves a listing of all calls.
      */
     list(callback: CallbackFn<Call[]>): void;
@@ -277,7 +277,7 @@ export interface MessageBird {
      * This request will hang up all the legs of the call.
      */
     delete(callId: string, callback: CallbackFn): void;
-  },
+  };
   /**
    * A recording describes a voice recording of a leg. You can initiate a recording of a leg by having a step in your callflow with the record action set.
    */
@@ -294,7 +294,7 @@ export interface MessageBird {
      * Downloads a recording
      */
     download(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
-  },
+  };
 }
 
 declare function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird;

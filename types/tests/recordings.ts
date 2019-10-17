@@ -22,7 +22,7 @@ mbClient.recordings.download('<CALL_ID>', '<LEG_ID>', '<RECORDING_ID>',
   (
     // $ExpectType Error | null
     err,
-    // $ExpectType .wav file | null
+    // $ExpectType unknown
     recording
   ) => {}
 );
