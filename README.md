@@ -61,7 +61,32 @@ Or in case of an error:
   ]
 }
 ```
-
+Notes
+-------------
+Messaging and Voice API use different pagination semantics:
+  
+  **Messaging API** uses limit and offset params for list methods (where applicable)
+  ````javascript
+  // list conversations
+  //In this case 20 is limit and 0 is offset
+  messagebird.conversations.list(20, 0, function (err, response) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(response);
+  });
+  ```` 
+  **Voice API** uses page and perPage params for list methods (where applicable)
+  ````javascript
+  // list Call Flows
+  // In this case 1 is page, 2 is items per page
+  messagebird.callflows.list(1, 2, function (err, response) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(response);
+  });
+  ````
 Verifying Signatures
 -------------
 
