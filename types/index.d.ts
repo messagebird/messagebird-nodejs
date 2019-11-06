@@ -24,6 +24,7 @@ import {
 } from './conversations';
 import { MmsObject, MmsParameter } from './mms';
 import { Features } from './feature';
+import { TranscriptionData } from './transcriptions';
 
 type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
 
@@ -294,6 +295,27 @@ export interface MessageBird {
      * Downloads a recording
      */
     download(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
+  };
+  /**
+   * A transcription is a textual representation of a recording as text.
+   */
+  transcriptions: {
+    /**
+     * Creates a new transcription
+     */
+    create(callId: string, legId: string, recordingId: string, language: string, callback: CallbackFn<TranscriptionData>): void;
+    /**
+     * Lists all transcriptions
+     */
+    list(callId: string, legId: string, recordingId: string, callback: CallbackFn<TranscriptionData>): void;
+    /**
+     * Retrieves a transcription
+     */
+    read(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn<TranscriptionData>): void;
+    /**
+     * Downloads a transcription
+     */
+    download(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn<boolean|string>): void;
   };
 }
 
