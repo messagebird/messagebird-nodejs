@@ -315,7 +315,7 @@ export interface MessageBird {
     /**
      * Downloads a transcription
      */
-    download(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn): void;
+    download(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn<boolean|string>): void;
   };
 }
 

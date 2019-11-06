@@ -26,6 +26,6 @@ mbClient.transcriptions.read('<CALL_ID>', '<LEG_ID>', '<RECORDING_ID>', '<TRANSC
 mbClient.transcriptions.download('<CALL_ID>', '<LEG_ID>', '<RECORDING_ID>', '<TRANSCRIPTION_ID>', (
   // $ExpectType Error | null
   err,
-  // $ExpectType unknown
+  // $ExpectType string | boolean | null
   transcriptionContent
 ) => {});
