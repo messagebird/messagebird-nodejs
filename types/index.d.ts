@@ -14,7 +14,8 @@ import { Lookup } from './lookup';
 import { Contact, ContactParameter } from './contact';
 import { GroupParameter } from './group';
 import { Recording } from './recordings';
-import { Call, CallParameter } from './calls';
+import { Call, CallParameter, CallFlowParameter } from './calls';
+import { CallFlow } from './callflows';
 import {
   ConversationParameter,
   SendResponse,
@@ -41,6 +42,14 @@ export interface MessageBird {
   messages: {
     read(id: string, callback: CallbackFn<Message>): void;
     create(params: MessageParameters, callback: CallbackFn<Message>): void;
+  };
+  callflows: {
+    read(id: string, callback: CallbackFn<CallFlow>): void;
+    list(page: number, perPage: number, callback: CallbackFn<CallFlow[]>): void;
+    list(callback: CallbackFn<CallFlow[]>): void;
+    delete(id: string, callback: CallbackFn): void;
+    update(id: string, params: CallFlowParameter, callback: CallbackFn): void;
+    create(params: CallFlowParameter, callback: CallbackFn<CallFlow>): void;
   };
   voice_messages: {
     read(id: string, callback: CallbackFn<VoiceMessage>): void;
