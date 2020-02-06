@@ -124,3 +124,14 @@ export interface MessageParameters {
   /** The scheduled date and time of the message in RFC3339 format (Y-m-d\TH:i:sP) */
   scheduledDatetime?: datetime;
 }
+
+export interface FilterParameters {
+  // The status of the message.
+  status: string;
+
+  // The limit of messages to retrieve.
+  limit?: number;
+
+  // The number of messages to skip before selecting.
+  offset?: number;
+}

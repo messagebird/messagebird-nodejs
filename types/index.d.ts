@@ -2,7 +2,7 @@
 
 import { Balance } from './balance';
 import { Hlr, HLRParameter } from './hlr';
-import { Message, MessageParameters } from './messages';
+import { Message, MessageParameters, FilterParameters } from './messages';
 import {
   VoiceMessage,
   VoiceParameters,
@@ -42,6 +42,7 @@ export interface MessageBird {
   messages: {
     read(id: string, callback: CallbackFn<Message>): void;
     create(params: MessageParameters, callback: CallbackFn<Message>): void;
+    list(filter: FilterParameters, callback: CallbackFn<Message[]>): void;
   };
   callflows: {
     read(id: string, callback: CallbackFn<CallFlow>): void;
