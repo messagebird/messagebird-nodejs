@@ -53,7 +53,7 @@ export interface MessageBird {
     create(params: CallFlowParameter, callback: CallbackFn<CallFlow>): void;
   };
   voice_messages: {
-    list(limit: number, offset: number, callback: CallbackFn<Contact[]>): void;
+    list(limit: number, offset: number, callback: CallbackFn<VoiceMessage[]>): void;
     read(id: string, callback: CallbackFn<VoiceMessage>): void;
     create(
       recipients: msisdn[],
