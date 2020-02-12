@@ -2,6 +2,13 @@ import messagebird from 'messagebird';
 
 const mbClient = messagebird('<AccessKey>');
 
+mbClient.voice_messages.list(100, 0, (
+  // $ExpectType Error | null
+  err,
+  // $ExpectType VoiceMessage[] | null
+  voiceMessages
+) => {});
+
 mbClient.voice_messages.read('<ID>', (
   // $ExpectType Error | null
   err,
