@@ -305,7 +305,7 @@ export interface MessageBird {
     /**
      * Deletes a recording
      */
-    delete(callId: string, legId:string, recordingId: string, callback:CallbackFn): void;
+    delete(callId: string, legId: string, recordingId: string, callback : CallbackFn): void;
     /**
      * Downloads a recording
      */
