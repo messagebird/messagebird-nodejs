@@ -23,6 +23,7 @@ import {
   ReplyConversationParameters,
   Webhooks
 } from './conversations';
+import { Webhooks as VoiceWebhooks } from './voice';
 import { MmsObject, MmsParameter } from './mms';
 import { Features } from './feature';
 import { TranscriptionData } from './transcriptions';
@@ -327,6 +328,36 @@ export interface MessageBird {
      * Downloads a transcription
      */
     download(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn<boolean|string>): void;
+  };
+  voice: {
+
+    webhooks: {
+      /**
+       * Creates a new webhook.
+       */
+      create(params: VoiceWebhooks.CreateParameters, callback: CallbackFn): void;
+      /**
+       * Retrieves an existing webhook by id.
+       */
+      read(id: string, callback: CallbackFn): void;
+      /**
+       * Updates a webhook.
+       */
+      update(
+        id: string,
+        params: VoiceWebhooks.UpdateParameters,
+        callback: CallbackFn
+      ): void;
+      /**
+       * Retrieves a list of webhooks.
+       */
+      list(limit: number, offset: number, callback: CallbackFn): void;
+      /**
+       * Deletes webhook
+       */
+      delete(id: string, callback: CallbackFn): void;
+
+    }
   };
 }
 
