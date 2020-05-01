@@ -25,9 +25,20 @@ Usage
 We have put some self-explanatory examples in the *examples* directory, but here is a quick breakdown on how it works.
 Let's go ahead and initialize the library first. Don't forget to replace `<YOUR_ACCESS_KEY>` with your actual access key.
 
+CommonJS require syntax:
+
 ```javascript
 var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 ```
+
+Typescript with ES6 import (or .mjs with Node >= v13):
+
+```typescript
+import initMB from 'messagebird';
+const messagebird = initMB('<YOUR_ACCESS_KEY>');
+```
+
+Tip: Don't forget to enable the `esModuleInterop` in tsconfig.json.
 
 Nice! Now we can send API requests through node. Let's use getting your balance overview as an example:
 

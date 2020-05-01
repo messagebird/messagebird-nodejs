@@ -21,7 +21,9 @@ import {
   SendResponse,
   UpdateConversationParameters,
   ReplyConversationParameters,
-  Webhooks
+  Webhooks,
+  StartConversationParameter,
+  StartConversationResponse
 } from './conversations';
 import { Webhooks as VoiceWebhooks } from './voice';
 import { MmsObject, MmsParameter } from './mms';
@@ -180,7 +182,7 @@ export interface MessageBird {
      * conversation already exists for the recipient, this conversation will
      * be resumed.
      */
-    start(params: ConversationParameter, callback: CallbackFn): void;
+    start(params: StartConversationParameter, callback: CallbackFn<StartConversationResponse>): void;
     /**
      * Retrieves all conversations for this account. By default,
      * conversations are sorted by their lastReceivedDatetime field so that
@@ -361,6 +363,17 @@ export interface MessageBird {
   };
 }
 
-declare function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird;
+export * from './balance';
+export * from './callflows';
+export * from './calls';
+export * from './contact';
+export * from './conversations';
+export * from './feature';
+export * from './hlr';
+export * from './lookup';
+export * from './messages';
+export * from './mms';
+export * from './recordings';
+export * from './transcriptions';
 
-export default messagebird;
+export default function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird
