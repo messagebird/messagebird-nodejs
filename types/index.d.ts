@@ -376,4 +376,4 @@ export * from './mms';
 export * from './recordings';
 export * from './transcriptions';
 
-export default function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird
+export default function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird;

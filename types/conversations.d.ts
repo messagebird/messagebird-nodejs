@@ -22,8 +22,10 @@ export interface Channel {
   name: string;
   /** A unique identifier for the platform that is used by this channel, for example: sms, Whatsapp or messenger. */
   platformId: string;
-  /** The status of this channel. Only active channels can be used for messaging.
-   * Can be one of inactive, active, pending, activation_required, activation_code_required, activating, and deleted. */
+  /**
+   * The status of this channel. Only active channels can be used for messaging.
+   * Can be one of inactive, active, pending, activation_required, activation_code_required, activating, and deleted.
+   */
   status: ChannelStatus;
   /** The date-time the channel was created, in RFC 3339 format (e.g. 2020-05-01T13:34:14Z). */
   createdDatetime: datetime;
@@ -40,8 +42,10 @@ export interface StartConversationResponse {
   contact: Contact;
   /** Channels used in this conversation. */
   channels: Channel[];
-  /** The status of this conversation. Only active conversations can be used for messaging.
-   * Can be one of active, archived. */
+  /**
+   * The status of this conversation. Only active conversations can be used for messaging.
+   * Can be one of active, archived.
+   */
   status: 'active' | 'archived';
   /** The date-time the conversation was created, in RFC 3339 format (e.g. 2020-05-01T13:34:14Z). */
   createdDatetime: datetime;
@@ -59,7 +63,7 @@ export interface StartConversationResponse {
     href: string;
     /** Id of the last message from the conversation. */
     lastMessageId: string;
-  }
+  };
 }
 
 export interface ConversationParameter {
