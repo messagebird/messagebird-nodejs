@@ -27,7 +27,6 @@ import {
 } from './conversations';
 import { Webhooks as VoiceWebhooks } from './voice';
 import { MmsObject, MmsParameter } from './mms';
-import { Features } from './feature';
 import { TranscriptionData } from './transcriptions';
 
 type CallbackFn<T = unknown> = (err: Error | null, res: T | null) => void;
