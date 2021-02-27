@@ -46,6 +46,7 @@ export interface MessageBird {
     read(id: string, callback: CallbackFn<Message>): void;
     create(params: MessageParameters, callback: CallbackFn<Message>): void;
     list(filter: FilterParameters, callback: CallbackFn<Message[]>): void;
+    delete(id: string, callback: CallbackFn): void;
   };
   callflows: {
     read(id: string, callback: CallbackFn<CallFlow>): void;
@@ -67,6 +68,7 @@ export interface MessageBird {
       params: VoiceParametersWithRecipients,
       callback: CallbackFn<VoiceMessage>
     ): void;
+    delete(id: string, callback: CallbackFn): void;
   };
   verify: {
     read(id: string, callback: CallbackFn<Verify>): void;
