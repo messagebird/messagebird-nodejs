@@ -306,6 +306,10 @@ export interface MessageBird {
      */
     read(callId: string, legId: string, recordingId: string, callback: CallbackFn<Recording>): void;
     /**
+     * Deletes a recording
+     */
+    delete(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
+    /**
      * Downloads a recording
      */
     download(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
