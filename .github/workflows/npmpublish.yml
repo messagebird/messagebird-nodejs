@@ -17,6 +17,7 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm test
+      - run: npm version from-git
         env:
           MB_ACCESSKEY: ${{secrets.mb_access_key}}
 
