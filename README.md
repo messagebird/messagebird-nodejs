@@ -1,7 +1,7 @@
 MessageBird REST API for Node.js
 ================================
 
-[![messagebird](https://github.com/messagebird/messagebird-nodejs/actions/workflows/npmpublish.yml/badge.svg)](https://github.com/messagebird/messagebird-nodejs/actions/workflows/npmpublish.yml)
+Package publish: [![messagebird](https://github.com/messagebird/messagebird-nodejs/actions/workflows/npmpublish.yml/badge.svg)](https://github.com/messagebird/messagebird-nodejs/actions/workflows/npmpublish.yml)
 
 This repository contains the open source Node.js client for MessageBird's REST API.
 Documentation can be found at: [https://developers.messagebird.com](https://developers.messagebird.com)
