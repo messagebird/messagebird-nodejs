@@ -1,9 +1,10 @@
 MessageBird REST API for Node.js
 ================================
 
-This repository contains the open source Node.js client for MessageBird's REST API.
-Documentation can be found at: https://developers.messagebird.com
+[![messagebird](https://github.com/messagebird/messagebird-nodejs/actions/workflows/npmpublish.yml/badge.svg)](https://github.com/messagebird/messagebird-nodejs/actions/workflows/npmpublish.yml)
 
+This repository contains the open source Node.js client for MessageBird's REST API.
+Documentation can be found at: [https://developers.messagebird.com](https://developers.messagebird.com)
 
 Requirements
 ------------
@@ -12,12 +13,10 @@ Requirements
 - Create a new `access_key` in the [developers](https://www.messagebird.com/app/en/settings/developers/access) section
 - MessageBird REST API for Node.js requires Node.js >= 0.10 or io.js
 
-
 Installation
 ------------
 
 `npm install messagebird`
-
 
 Usage
 -----
@@ -72,11 +71,14 @@ Or in case of an error:
   ]
 }
 ```
+
 Notes
 -------------
+
 Messaging and Voice API use different pagination semantics:
   
   **Messaging API** uses limit and offset params for list methods (where applicable)
+
   ````javascript
   // list conversations
   //In this case 20 is limit and 0 is offset
@@ -86,8 +88,10 @@ Messaging and Voice API use different pagination semantics:
     }
     console.log(response);
   });
-  ```` 
+  ````
+
   **Voice API** uses page and perPage params for list methods (where applicable)
+
   ````javascript
   // list Call Flows
   // In this case 1 is page, 2 is items per page
@@ -98,12 +102,13 @@ Messaging and Voice API use different pagination semantics:
     console.log(response);
   });
   ````
+
 Verifying Signatures
 -------------
 
 We sign our HTTP requests to allow you to verify that they actually came from us (authentication) and that they haven't been altered along the way (integrity). For each HTTP request that MessageBird sends, a `MessageBird-Signature` and `MessageBird-Request-Timestamp` header is added. Signature middleware calculates a signature using the timestamp, query parameters and body then compares the calculated signature to `MessageBird-Signature` header. If they are not same or request expired, middleware throws an error. This way, you will know if the request is valid or not. If you want to verify request manually, you can check [here](https://developers.messagebird.com/docs/verify-http-requests). Let's use Signature middleware to verify webhooks.
 
-```
+```javascript
 var Signature = require('messagebird/lib/signature');
 
 // Replace <YOUR_SIGNING_KEY> with your actual signing key.
@@ -127,13 +132,14 @@ To use the whatsapp sandbox you need to add `"ENABLE_CONVERSATIONSAPI_WHATSAPP_S
 ```javascript
 var messagebird = require('messagebird')("<YOUR_ACCESS_KEY>", null, ["ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX"]);
 ```
+
 Documentation
 -------------
 
 Complete documentation, instructions, and examples are available at:
 [https://developers.messagebird.com](https://developers.messagebird.com)
 
-
 License
 -------
+
 The MessageBird REST API for Node.js is licensed under [The BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause). Copyright (c) 2014, MessageBird
