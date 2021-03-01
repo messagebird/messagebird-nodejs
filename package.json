@@ -35,7 +35,8 @@
     "scmp": "^2.0.0"
   },
   "devDependencies": {
-    "dtslint": "^0.9.3",
-    "nock": "^11.3.2"
+    "dtslint": "^4.0.7",
+    "nock": "^11.3.2",
+    "typescript": "^4.2.2"
   }
 }
