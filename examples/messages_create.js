@@ -2,7 +2,7 @@
 var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 var params = {
-  'originator': 'MessageBird',
+  'originator': 'YourBrand',
   'recipients': [
     '31612345678'
   ],

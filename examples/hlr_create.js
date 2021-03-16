@@ -1,7 +1,7 @@
 
 var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
-messagebird.hlr.create('31612345678', 'MessageBird', function (err, response) {
+messagebird.hlr.create('31612345678', 'YourBrand', function (err, response) {
   if (err) {
     return console.log(err);
   }
