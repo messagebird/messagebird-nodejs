@@ -175,14 +175,14 @@ export interface EmailInlineImage extends EmailAttachment {
   contentId?: string;
 }
 
-  export interface EmailRecipient {
-    /** Required. Valid email address */
-    email: string;
-    /** Name attached to the email address, this appears in the To field in a users email client */
-    name?: string;
-    /** List of variables used for placeholders inside the content or headers of your email */
-    variables?: Record<string, string>;
-  }
+export interface EmailRecipient {
+  /** Required. Valid email address */
+  email: string;
+  /** Name attached to the email address, this appears in the To field in a users email client */
+  name?: string;
+  /** List of variables used for placeholders inside the content or headers of your email */
+  variables?: Record<string, string>;
+}
 
 export interface LocationContent {
   /** Latitude and longitude are expected as floats. */
