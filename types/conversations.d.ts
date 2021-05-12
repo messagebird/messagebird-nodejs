@@ -153,7 +153,6 @@ export interface EmailContentContent {
     open?: boolean;
     click?: boolean;
   };
-  
   /** The URL for delivery of status reports for the message. Must use https. */
   reportUrl?: string;
   /** Perform substitutions of variables inside the content or headers of your email (Default: true). */
