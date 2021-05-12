@@ -87,7 +87,9 @@ export type Content =
   | TextContent
   | ImageContent
   | AudioContent
+  | VideoContent
   | FileContent
+  | EmailContent
   | LocationContent
   | HSMContent;
 
@@ -98,21 +100,88 @@ export interface TextContent {
 
 export interface ImageContent {
   /** Required for type image. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
-  image: File;
+  image: Media;
+}
+
+export interface VideoContent {
+  /** Required for type video. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
+  video: Media;
 }
 
 export interface AudioContent {
   /** Required for type video. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
-  video: File;
+  audio: Media;
 }
 
 export interface FileContent {
   /** Required for type file. An object of the form {"url": "<media url>"} containing the url of the remote media file. */
-  file: File;
+  file: Media;
 }
 
-export interface File {
+export interface Media {
   url: string;
+  caption?: string;
+}
+
+export interface EmailContent {
+  /** Required for type email. An object containing details of the email message. */
+  email: EmailContentContent;
+}
+
+export interface EmailContentContent {
+  /** A unique random ID for this message on the MessageBird platform, returned upon acceptance of the message. */
+  id?: string;
+
+  to: EmailRecipient[];
+  from: EmailRecipient;
+  subject: string;
+  content: {
+    /** HTML content of the message, expected in UTF-8. */
+    html?: string;
+    /** Plain text of the message, expected in UTF-8. */
+    text?: string
+  };
+
+  /** Email address used to compose the email’s “Reply-To” header. */
+  replyTo?: string;
+  /** Email address used to compose the email’s “Return-Path” header. Must match your sending domain. */
+  returnPath?: string;
+  /** Object containing custom headers other than Subject, From, To, and Reply-To. These will be sent along with your message. */
+  headers?: Record<string, string>;
+  /** Allows you to set tracking options. */
+  tracking?: {
+    open?: boolean;
+    click?: boolean;
+  };
+  /** The URL for delivery of status reports for the message. Must use https. */
+  reportUrl?: string;
+  /** Perform substitutions of variables inside the content or headers of your email (Default: true). */
+  performSubstitutions?: boolean;
+  /** List of files attached to a message. */
+  attachments?: EmailAttachment;
+  /** List of inline images added to the message content. */
+  inlineImages?: EmailInlineImage;
+}
+
+export interface EmailAttachment {
+  id?: string;
+  name?: string;
+  type?: string;
+  URL: string;
+  length?: number;
+}
+
+export interface EmailInlineImage extends EmailAttachment {
+  contentId?: string;
+}
+
+export interface EmailRecipient {
+  /** Required. Valid email address */
+  email: string;
+  /** Name attached to the email address, this appears in the To field in a users email client */
+  name?: string;
+  /** List of variables used for placeholders inside the content or headers of your email */
+  variables?: Record<string, string>;
 }
 
 export interface LocationContent {
