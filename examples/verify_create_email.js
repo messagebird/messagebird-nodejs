@@ -1,16 +1,16 @@
 
 var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
-params = {
-  type: 'email',
-  subject: 'Login code',
-  originator: '<ORIGINATOR EMAIL>',
+var from = "<FROM_EMAIL>";//email from which users will receive the verification token
+var to = "<TO_EMAIL>";//email to which the verification code will be sent to
+var additionalParams = {
+  subject: 'Your verification code',
   template: 'Your security token: %token',
   timeout: 300
 }
 
-//Creating a token
-messagebird.verify.create('<RECIPIENT_EMAIL>', params, function (err, response) {
+//Creating a token with email
+messagebird.verify.createWithEmail(from, to, additionalParams, function (err, response) {
   if (err) {
     return console.log(err);
   }
