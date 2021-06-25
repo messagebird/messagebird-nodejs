@@ -7,8 +7,8 @@ export interface Verify {
   id: string;
   /** The URL of the created object. */
   href: string;
-  /** The msisdn of the recipient */
-  recipient: msisdn;
+  /** The reference of the recipient. Can be a phone number or a email */
+  recipient: string;
   /** A client reference */
   reference: string;
   messages: {
@@ -34,10 +34,10 @@ export interface VerifyParameter {
   reference?: string;
 
   /**
-   * The type of message. Values can be: sms, flash, tts
+   * The type of message. Values can be: sms, flash, tts, email
    * Default: sms
    */
-  type?: 'sms' | 'flash' | 'tts';
+  type?: 'sms' | 'flash' | 'tts' | 'email';
 
   /**
    * The template of the message body. Needs to contain %token for the verification code to be included.
@@ -67,4 +67,11 @@ export interface VerifyParameter {
    * The language in which the message needs to be read to the recipient. Default: en-gb
    */
   language?: languages;
+}
+
+export interface VerifyMessage {
+  /** A unique random ID which is created on the MessageBird platform and is returned upon creation of the object */
+  id: string;
+  /** The status of the message. Possible values might depend on the type on the verification method used */
+  status: string;
 }

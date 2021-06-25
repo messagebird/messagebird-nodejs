@@ -9,7 +9,7 @@ import {
   VoiceParametersWithRecipients
 } from './voice_messages';
 import { msisdn } from './general';
-import { Verify, VerifyParameter } from './verify';
+import { Verify, VerifyParameter, VerifyMessage } from './verify';
 import { Lookup } from './lookup';
 import { Contact, ContactParameter } from './contact';
 import { GroupParameter } from './group';
@@ -73,11 +73,13 @@ export interface MessageBird {
   verify: {
     read(id: string, callback: CallbackFn<Verify>): void;
     create(
-      recipient: msisdn | [msisdn],
+      recipient: string | [string],
       params: VerifyParameter,
       callback: CallbackFn<Verify>
     ): void;
-    create(recipient: msisdn | [msisdn], callback: CallbackFn<Verify>): void;
+    create(recipient: string | [string], callback: CallbackFn<Verify>): void;
+    createWithEmail(from: string, to: string | [string], params: VerifyParameter, callback: CallbackFn<Verify>): void;
+    createWithEmail(from: string, to: string | [string], callback: CallbackFn<Verify>): void;
     delete(id: string, callback: CallbackFn<void>): void;
     verify(
       /** A unique random ID which is created on the MessageBird platform and is returned upon creation of the object. */
@@ -86,6 +88,7 @@ export interface MessageBird {
       token: string,
       callback: CallbackFn<Verify>
     ): void;
+    getVerifyEmailMessage(id: string, callback: CallbackFn<VerifyMessage>): void;
   };
   lookup: {
     read(
