@@ -194,7 +194,7 @@ export interface LocationContent {
 
 export interface HSMContent {
   /** Required for type hsm. Available only for WhatsApp. */
-  hsm: HSMContentContent;
+  hsm: HSMContentContent | HSMComponentContent;
 }
 
 export interface HSMContentContent {
@@ -205,7 +205,15 @@ export interface HSMContentContent {
   templateName: string;
   language: HSMLanguage;
   params: HSMLocalizableParameters[];
-  components?: HSMComponent[];
+}
+export interface HSMComponentContent {
+  /** WhatsApp namespace for your account. You will receive this value when setting up your WhatsApp account. */
+  namespace: string;
+
+  /** The name of the template. */
+  templateName: string;
+  language: HSMLanguage;
+  components: HSMComponent[];
 }
 
 export interface HSMComponent {
