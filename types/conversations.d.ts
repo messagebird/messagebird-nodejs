@@ -205,6 +205,51 @@ export interface HSMContentContent {
   templateName: string;
   language: HSMLanguage;
   params: HSMLocalizableParameters[];
+  components: HSMComponent[];
+}
+
+export interface HSMComponent {
+  type: 'header' | 'body';
+  parameters: HSMComponentParameter[];
+}
+
+export type HSMComponentParameter = HSMComponentTextParameter | HSMComponentCurrencyParameter;
+
+export interface HSMComponentTextParameter {
+  type: 'text';
+  text: string;
+}
+
+export interface HSMComponentCurrencyParameter {
+  type: 'currency';
+  currency: {
+    /**
+     * ISO 4217 currency code
+     */
+    currencyCode: string,
+    /**
+     * Total amount together with cents as a float, multiplied by 1000
+     */
+    amount: number
+  };
+}
+
+export interface HSMComponentDateTimeParameter {
+  type: 'date_time';
+  /**
+   * RFC3339 representation of the date and time
+   */
+  dateTime: string;
+}
+
+export interface HSMComponentDocumentParameter {
+  type: 'document';
+  document: Media;
+}
+
+export interface HSMComponentImageParameter {
+  type: 'image';
+  image: Media;
 }
 
 export interface HSMLanguage {
