@@ -206,6 +206,7 @@ export interface HSMContentContent {
   language: HSMLanguage;
   params: HSMLocalizableParameters[];
 }
+
 export interface HSMComponentContent {
   /** WhatsApp namespace for your account. You will receive this value when setting up your WhatsApp account. */
   namespace: string;
