@@ -194,7 +194,7 @@ export interface LocationContent {
 
 export interface HSMContent {
   /** Required for type hsm. Available only for WhatsApp. */
-  hsm: HSMContentContent;
+  hsm: HSMContentContent | HSMComponentContent;
 }
 
 export interface HSMContentContent {
@@ -205,6 +205,60 @@ export interface HSMContentContent {
   templateName: string;
   language: HSMLanguage;
   params: HSMLocalizableParameters[];
+}
+
+export interface HSMComponentContent {
+  /** WhatsApp namespace for your account. You will receive this value when setting up your WhatsApp account. */
+  namespace: string;
+
+  /** The name of the template. */
+  templateName: string;
+  language: HSMLanguage;
+  components: HSMComponent[];
+}
+
+export interface HSMComponent {
+  type: 'header' | 'body';
+  parameters: HSMComponentParameter[];
+}
+
+export type HSMComponentParameter = HSMComponentTextParameter | HSMComponentCurrencyParameter | HSMComponentDateTimeParameter | HSMComponentDocumentParameter | HSMComponentImageParameter;
+
+export interface HSMComponentTextParameter {
+  type: 'text';
+  text: string;
+}
+
+export interface HSMComponentCurrencyParameter {
+  type: 'currency';
+  currency: {
+    /**
+     * ISO 4217 currency code
+     */
+    currencyCode: string,
+    /**
+     * Total amount together with cents as a float, multiplied by 1000
+     */
+    amount: number
+  };
+}
+
+export interface HSMComponentDateTimeParameter {
+  type: 'date_time';
+  /**
+   * RFC3339 representation of the date and time
+   */
+  dateTime: string;
+}
+
+export interface HSMComponentDocumentParameter {
+  type: 'document';
+  document: Media;
+}
+
+export interface HSMComponentImageParameter {
+  type: 'image';
+  image: Media;
 }
 
 export interface HSMLanguage {
