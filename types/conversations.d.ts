@@ -205,7 +205,7 @@ export interface HSMContentContent {
   templateName: string;
   language: HSMLanguage;
   params: HSMLocalizableParameters[];
-  components: HSMComponent[];
+  components?: HSMComponent[];
 }
 
 export interface HSMComponent {
@@ -213,7 +213,7 @@ export interface HSMComponent {
   parameters: HSMComponentParameter[];
 }
 
-export type HSMComponentParameter = HSMComponentTextParameter | HSMComponentCurrencyParameter;
+export type HSMComponentParameter = HSMComponentTextParameter | HSMComponentCurrencyParameter | HSMComponentDateTimeParameter | HSMComponentDocumentParameter | HSMComponentImageParameter;
 
 export interface HSMComponentTextParameter {
   type: 'text';
