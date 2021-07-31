@@ -4,7 +4,7 @@ var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 // start a conversation
 messagebird.conversations.start({
   'to': '31612345678',
-  'channelId': '619747f69cf940a98fb443140ce9aed2' ,
+  'channelId': '619747f69cf940a98fb443140ce9aed2',
   'type': 'text',
   'content': { 'text': 'Hello!' }
 }, function (err, response) {
@@ -102,7 +102,7 @@ messagebird.conversations.webhooks.read('451e6b72799e4415b2aab425f582f65e', func
 
 // update webhook
 messagebird.conversations.webhooks.update('451e6b72799e4415b2aab425f582f65e', {
-  'status': 'disabled',
+  'status': 'disabled'
 }, function (err, response) {
   if (err) {
     return console.log(err);

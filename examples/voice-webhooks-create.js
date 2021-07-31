@@ -1,6 +1,6 @@
 var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
-//create webhook
+// create webhook
 messagebird.voice.webhooks.create({
   'url': '<WEBHOOK_URL>',
   'title': '<WEBHOOK_TITLE>',

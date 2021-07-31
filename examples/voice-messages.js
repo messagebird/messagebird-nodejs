@@ -1,12 +1,12 @@
-var messagebird = require("messagebird")("<YOUR_ACCESS_KEY>");
+var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 var params = {
-  recipients: ["31612345678"],
-  body: "Hello, world"
+  recipients: ['31612345678'],
+  body: 'Hello, world'
 };
 
 // create a voice message
-messagebird.voice_messages.create(params, function(err, data) {
+messagebird.voice_messages.create(params, function (err, data) {
   if (err) {
     return console.log(err);
   }
@@ -14,7 +14,7 @@ messagebird.voice_messages.create(params, function(err, data) {
 });
 
 // list voice messages for this account
-messagebird.voice_messages.list(20, 0, function(err, data) {
+messagebird.voice_messages.list(20, 0, function (err, data) {
   if (err) {
     return console.log(err);
   }
@@ -22,7 +22,7 @@ messagebird.voice_messages.list(20, 0, function(err, data) {
 });
 
 // read a specific voice message by ID
-messagebird.voice_messages.read("<VOICE_MESSAGE_ID>", function(err, data) {
+messagebird.voice_messages.read('<VOICE_MESSAGE_ID>', function (err, data) {
   if (err) {
     return console.log(err);
   }
