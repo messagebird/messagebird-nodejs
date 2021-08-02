@@ -1,16 +1,26 @@
+// This example show how to verify the authenticity of a MessageBird webhook.
 const mbWebookSignatureJwt = require('messagebird/lib/webookSignatureJwt');
 const express = require('express');
 
+const secret = '<YOUR SIGNING KEY>';
+
 let app = express();
 
+// If the node server is behind a proxy, you must trust the proxy to infer the correct protocol and hostname.
+
+app.set('trust proxy', () => true);
+
 // Replace <YOUR_SIGNING_KEY> with your actual signing key.
-let verifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify('<YOUR_SIGNING_KEY>');
+let verifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify(secret);
 
 // Retrieve the raw body as a buffer.
-app.use(require('body-parser').raw({ type: '*/*' }));
+app.use(express.raw({ 'type': '*/*' }));
 
 // Verified webhook.
 app.get('/webhook', verifySignature, (req, res) => {
+  res.send('verified');
+});
+app.post('/webhook', verifySignature, (req, res) => {
   res.send('verified');
 });
 
@@ -22,11 +32,36 @@ app.get('/webhook', verifySignature, (req, res) => {
 // However it doesn't verify if the URL was altered or not.
 //
 // This shouldn't be used in a production system and when used no query parameters should be trusted.
-let advancedOpts = new mbWebookSignatureJwt.VerifyOptions();
+let skipUrlOpts = new mbWebookSignatureJwt.VerifyOptions();
 
-advancedOpts.validateUrl = false;
-let skipUrlVerifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify('<YOUR_SIGNING_KEY>', advancedOpts);
+skipUrlOpts.validateUrl = false;
+let skipUrlVerifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify(secret, skipUrlOpts);
 
 app.get('/webhook-skip-url-verification', skipUrlVerifySignature, (req, res) => {
   res.send('partialy verified');
+});
+
+
+// It's also possible to protect further by ensuring the uniqueness of the JWT ID (jti).
+// By default jti is required but always considered valid.
+//
+// Do note that the following implementation isn't production-grade and only for demonstration purposes.
+let verifyJtiOpts = new mbWebookSignatureJwt.VerifyOptions();
+let seenJtis = new Set();
+
+skipUrlOpts.jwtVerifyJti = (jti) => {
+  if (seenJtis.has(jti)) {
+    return false;
+  }
+  seenJtis.add(jti);
+  return true;
+};
+let verifyJtiVerifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify(secret, verifyJtiOpts);
+
+app.get('/webhook-verify-jti', verifyJtiVerifySignature, (req, res) => {
+  res.send('verified with jti');
+});
+
+app.listen(8000, () => {
+  console.log('Example webhooks hanlder listening at http://localhost:8000');
 });
