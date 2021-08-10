@@ -345,6 +345,15 @@
         "reason": "invalid jwt: claim payload_hash is not set but payload is present"
     },
     {
+        "name": "Port number in URL - GET",
+        "method": "GET",
+        "secret": "36efdd1aace2e26cd490f0d951138253bef2f7c6d34d18981da781555cc4cebb",
+        "url": "https://example.com:8080/",
+        "timestamp": "2021-07-05T12:00:00+02:00",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNZXNzYWdlQmlyZCIsIm5iZiI6MTYyNTQ3OTIwMCwiZXhwIjoxNjI1NDc5MjYwLCJqdGkiOiI1OWEyNDRkYy1lOWFkLTRlMjMtOTc3OC0zNzFmYWEyMzhmNzIiLCJ1cmxfaGFzaCI6IjA3Zjc4NjFhNjliMTNjMjI5YzZhZTU5NmQxOThiMjc2M2IwNTRjZjVlMDAwZDczNmQxYzQ4MTAyZDc3MGNmZmMifQ.vcpa0IicGAbpo064dOjiA2VbVOR2S5uZBEaBOP16sS8",
+        "valid": true
+    },
+    {
         "name": "Special characters in URL - GET",
         "method": "GET",
         "secret": "36efdd1aace2e26cd490f0d951138253bef2f7c6d34d18981da781555cc4cebb",
