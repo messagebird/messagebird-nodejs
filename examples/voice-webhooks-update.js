@@ -1,4 +1,4 @@
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 // update webhook
 messagebird.voice.webhooks.update('<WEBHOOK_ID>', {

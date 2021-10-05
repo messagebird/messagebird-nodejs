@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 messagebird.verify.read('<VERIFY_ID>', function (err, response) {
   if (err) {
