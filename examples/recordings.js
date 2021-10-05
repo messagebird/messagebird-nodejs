@@ -1,4 +1,4 @@
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 // list recordings
 messagebird.recordings.list('<CALL_ID>', '<LEG_ID>', '<LIMIT>', '<OFFSET>', function (err, response) {

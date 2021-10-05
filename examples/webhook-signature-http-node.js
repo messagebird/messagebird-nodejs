@@ -1,4 +1,4 @@
-const mbWebookSignatureJwt = require('messagebird/lib/webookSignatureJwt');
+const mbWebookSignatureJwt = require('messagebird/lib/webhook-signature-jwt');
 const http = require('http');
 const { createSecretKey } = require('crypto');
 

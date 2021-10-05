@@ -1,5 +1,5 @@
 
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
 messagebird.transcriptions.create('<CALL_ID>', '<LEG_ID>', '<RECORDING_ID>', '<LANGUAGE>', function (err, data) {
   if (err) {

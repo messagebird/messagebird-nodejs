@@ -1,6 +1,6 @@
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 
-var params = {
+const params = {
   recipients: ['31612345678'],
   body: 'Hello, world'
 };
