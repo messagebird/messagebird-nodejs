@@ -108,7 +108,7 @@ Verifying Signatures
 
 For each HTTP request that MessageBird sends, a `MessageBird-Signature-JWT` header is added.
 
-The `MessageBird-Signature-JWT` header is a signature that consists of all the information that is required to verify the integrity of the request. The signature is generated from the request URL and request body and is signed with the HMAC-SHA256 algorithm using your your signing key. You can validate this signature using our SDKsto e nsure that the request is valid and unaltered. The token also includes timestamp claims that allow you to prove the time of the request, protecting from replay attacks and the like.
+The `MessageBird-Signature-JWT` header is a signature that consists of all the information that is required to verify the integrity of the request. The signature is generated from the request URL and request body and is signed with the HMAC-SHA256 algorithm using your your signing key. You can validate this signature using our SDKsto ensure that the request is valid and unaltered. The token also includes timestamp claims that allow you to prove the time of the request, protecting from replay attacks and the like.
 For more details consult the [documentation](https://developers.messagebird.com/api/#verifying-http-requests).
 
 Examples:
