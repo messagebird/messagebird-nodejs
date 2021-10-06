@@ -1,4 +1,4 @@
-const mbWebookSignatureJwt = require('messagebird/lib/webhook-signature-jwt');
+const mbWebhookSignatureJwt = require('messagebird/lib/webhook-signature-jwt');
 const http = require('http');
 const { createSecretKey } = require('crypto');
 
@@ -30,9 +30,9 @@ const server = http.createServer((req, res) => {
       .then(() => {
         let body = Buffer.concat(chunks);
         let url = `${getProtocol(req)}://${req.headers.host}${req.url}`;
-        let jwt = req.headers[mbWebookSignatureJwt.SIGNATURE_HEADER_NAME];
+        let jwt = req.headers[mbWebhookSignatureJwt.SIGNATURE_HEADER_NAME];
 
-        return mbWebookSignatureJwt.verify(
+        return mbWebhookSignatureJwt.verify(
           url,
           body,
           jwt,
