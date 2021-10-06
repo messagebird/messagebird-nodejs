@@ -81,7 +81,7 @@ Messaging and Voice API use different pagination semantics:
 
   ````javascript
   // list conversations
-  //In this case 20 is limit and 0 is offset
+  // In this case 20 is limit and 0 is offset
   messagebird.conversations.list(20, 0, function (err, response) {
     if (err) {
       return console.log(err);
@@ -108,19 +108,19 @@ Verifying Signatures
 
 For each HTTP request that MessageBird sends, a `MessageBird-Signature-JWT` header is added.
 
-The `MessageBird-Signature-JWT` header is a signature that consists of all the information that is required to verify the integrity of the request. The signature is generated from the request URL and request body and is signed with the HMAC-SHA256 algorithm using your your signing key. You can validate this signature using our SDKsto e nsure that the request is valid and unaltered. The token also includes timestamp claims that allow you to prove the time of the request, protecting from replay attacks and the like. 
-For more details consult the [documentation](https://developers.messagebird.com/api/#verifying-http-requests). 
+The `MessageBird-Signature-JWT` header is a signature that consists of all the information that is required to verify the integrity of the request. The signature is generated from the request URL and request body and is signed with the HMAC-SHA256 algorithm using your your signing key. You can validate this signature using our SDKsto e nsure that the request is valid and unaltered. The token also includes timestamp claims that allow you to prove the time of the request, protecting from replay attacks and the like.
+For more details consult the [documentation](https://developers.messagebird.com/api/#verifying-http-requests).
 
 Examples:
+
 - [full example with Express](./examples/webhook-signature-express-middleware.js)
 - [example in vanilla JS](./examples/webhook-signature-http-node.js)
-
 
 Let's use Express Signature middleware to verify webhooks.
 
 ```javascript
 // This example show how to verify the authenticity of a MessageBird webhook.
-const mbWebookSignatureJwt = require('messagebird/lib/webhook-signature-jwt');
+const mbWebhookSignatureJwt = require('messagebird/lib/webhook-signature-jwt');
 const express = require('express');
 
 const secret = '<YOUR SIGNING KEY>';
@@ -132,7 +132,7 @@ const app = express();
 app.set('trust proxy', () => true);
 
 // Replace <YOUR_SIGNING_KEY> with your actual signing key.
-const verifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify(secret);
+const verifySignature = new mbWebhookSignatureJwt.ExpressMiddlewareVerify(secret);
 
 // Retrieve the raw body as a buffer.
 app.use(express.raw({ 'type': '*/*' }));
@@ -145,9 +145,6 @@ app.post('/webhook', verifySignature, (req, res) => {
   res.send('verified');
 });
 ```
-
-
-
 
 Documentation
 -------------

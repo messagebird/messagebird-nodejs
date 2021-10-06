@@ -1,6 +1,6 @@
 /**
  * features type
  *
- * Possible values are: ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX
+ * Possible values are: ENABLE_FIREBASE_PLUGIN
  */
-export type Features = "ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX" | "ENABLE_FIREBASE_PLUGIN";
+export type Features = "ENABLE_FIREBASE_PLUGIN";
