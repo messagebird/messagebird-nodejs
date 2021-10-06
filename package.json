@@ -31,6 +31,7 @@
   "license": "BSD-2-Clause",
   "homepage": "https://github.com/messagebird/messagebird-nodejs",
   "dependencies": {
+    "jose": "^3.14",
     "safe-buffer": "^5.2.1",
     "scmp": "^2.1.0"
   },

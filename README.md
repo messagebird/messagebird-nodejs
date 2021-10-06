@@ -27,7 +27,7 @@ Let's go ahead and initialize the library first. Don't forget to replace `<YOUR_
 CommonJS require syntax:
 
 ```javascript
-var messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
 ```
 
 Typescript with ES6 import (or .mjs with Node >= v13):
@@ -106,32 +106,48 @@ Messaging and Voice API use different pagination semantics:
 Verifying Signatures
 -------------
 
-We sign our HTTP requests to allow you to verify that they actually came from us (authentication) and that they haven't been altered along the way (integrity). For each HTTP request that MessageBird sends, a `MessageBird-Signature` and `MessageBird-Request-Timestamp` header is added. Signature middleware calculates a signature using the timestamp, query parameters and body then compares the calculated signature to `MessageBird-Signature` header. If they are not same or request expired, middleware throws an error. This way, you will know if the request is valid or not. If you want to verify request manually, you can check [here](https://developers.messagebird.com/docs/verify-http-requests). Let's use Signature middleware to verify webhooks.
+For each HTTP request that MessageBird sends, a `MessageBird-Signature-JWT` header is added.
+
+The `MessageBird-Signature-JWT` header is a signature that consists of all the information that is required to verify the integrity of the request. The signature is generated from the request URL and request body and is signed with the HMAC-SHA256 algorithm using your your signing key. You can validate this signature using our SDKsto e nsure that the request is valid and unaltered. The token also includes timestamp claims that allow you to prove the time of the request, protecting from replay attacks and the like. 
+For more details consult the [documentation](https://developers.messagebird.com/api/#verifying-http-requests). 
+
+Examples:
+- [full example with Express](./examples/webhook-signature-express-middleware.js)
+- [example in vanilla JS](./examples/webhook-signature-http-node.js)
+
+
+Let's use Express Signature middleware to verify webhooks.
 
 ```javascript
-var Signature = require('messagebird/lib/signature');
+// This example show how to verify the authenticity of a MessageBird webhook.
+const mbWebookSignatureJwt = require('messagebird/lib/webhook-signature-jwt');
+const express = require('express');
+
+const secret = '<YOUR SIGNING KEY>';
+
+const app = express();
+
+// If the node server is behind a proxy, you must trust the proxy to infer the correct protocol and hostname.
+
+app.set('trust proxy', () => true);
 
 // Replace <YOUR_SIGNING_KEY> with your actual signing key.
-var verifySignature = new Signature('<YOUR_SIGNING_KEY>');
+const verifySignature = new mbWebookSignatureJwt.ExpressMiddlewareVerify(secret);
 
 // Retrieve the raw body as a buffer.
-app.use(require('body-parser').raw({ type: '*/*' }));
+app.use(express.raw({ 'type': '*/*' }));
 
 // Verified webhook.
-app.get('/webhook', verifySignature, function(req, res) {
-    res.send("Verified");
+app.get('/webhook', verifySignature, (req, res) => {
+  res.send('verified');
 });
-
+app.post('/webhook', verifySignature, (req, res) => {
+  res.send('verified');
+});
 ```
 
-Conversations Whatsapp Sandbox
--------------
 
-To use the whatsapp sandbox you need to add `"ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX"` to the list of features you want enabled. Don't forget to replace `<YOUR_ACCESS_KEY>` with your actual access key.
 
-```javascript
-var messagebird = require('messagebird')("<YOUR_ACCESS_KEY>", null, ["ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX"]);
-```
 
 Documentation
 -------------
