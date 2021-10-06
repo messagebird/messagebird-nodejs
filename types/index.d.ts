@@ -156,7 +156,6 @@ export interface MessageBird {
       contactIds: string[],
       callback: CallbackFn
     ): void;
-    getAddContactsQueryString(contactIds: string[]): string;
     listContacts(
       groupId: string,
       limit: number,
