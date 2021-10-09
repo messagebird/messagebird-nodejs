@@ -133,7 +133,7 @@ export interface EmailContentContent {
   id?: string;
 
   to: EmailRecipient[];
-  from: EmailRecipient;
+  from: { name?: string; address: string; };
   subject: string;
   content: {
     /** HTML content of the message, expected in UTF-8. */
