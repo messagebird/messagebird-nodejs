@@ -6,7 +6,6 @@ mbClient.calls.create({
   source: '31612345678',
   destination: '31612345678',
   callFlow: {
-    title: 'Say message',
     steps: [
       {
         action: 'say',

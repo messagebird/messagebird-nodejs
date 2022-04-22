@@ -3,7 +3,6 @@ import messagebird from 'messagebird';
 const mbClient = messagebird('<AccessKey>');
 
 mbClient.callflows.create({
-    title: 'cf#1',
     steps: [
             {
                 action: 'say',
