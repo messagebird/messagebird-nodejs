@@ -2,9 +2,7 @@ name: test
 on:
   pull_request:
   push:
-    branches:
-      - '*'
-      - '!master'
+    branches: [master, main]
   workflow_dispatch: {}
 
 jobs:
@@ -23,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '10','11', '12', '13', '14', '15', '16', '17', '18']
+        node: [ '16', '17', '18']
     name: NodeJS ${{ matrix.node }} test
     env:
       MB_ACCESSKEY: test_iQpAp0KCs5GCsMpDhIx2leuNB
