@@ -222,7 +222,7 @@ export interface HSMComponent {
   parameters: HSMComponentParameter[];
 }
 
-export type HSMComponentParameter = HSMComponentTextParameter | HSMComponentCurrencyParameter | HSMComponentDateTimeParameter | HSMComponentDocumentParameter | 
+export type HSMComponentParameter = HSMComponentTextParameter | HSMComponentCurrencyParameter | HSMComponentDateTimeParameter | HSMComponentDocumentParameter |
 	HSMComponentImageParameter | HSMComponentVideoParameter | HSMComponentPayloadParameter;
 
 export interface HSMComponentTextParameter {
