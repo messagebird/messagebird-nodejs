@@ -5,7 +5,6 @@ var params = {
   source: '<SOURCE_PHONE_NUMBER>',
   destination: '<DESTINATION_PHONE_NUMBER>',
   callFlow: {
-    title: 'Say message',
     steps: [
       {
         action: 'say',

@@ -5,7 +5,7 @@ import { StepParameter } from './calls';
 export interface CallFlow {
     /** The unique ID of the call flow. */
     id: string;
-    title: string;
+    title?: string;
     /** Says whether a full call recording is enabled on this call flow, the default value for this attribute is false. */
     record: boolean;
     /** An array of step objects. The sequence of the array items describe the order of execution, where the first item will be executed first, than the second, etcetera. */
