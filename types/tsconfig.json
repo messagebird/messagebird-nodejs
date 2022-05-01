@@ -9,7 +9,6 @@
 
     "strict": true,
     "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
     "alwaysStrict": true,
 
     "baseUrl": ".",
