@@ -1,6 +1,72 @@
 import { datetime } from './general';
-import { languages } from './voice_messages';
 import { Contact } from './contact';
+
+export type hsmLanguages =
+  | 'af'
+  | 'sq'
+  | 'ar'
+  | 'az'
+  | 'bn'
+  | 'bg'
+  | 'ca'
+  | 'zh_CN'
+  | 'zh_HK'
+  | 'zh_TW'
+  | 'hr'
+  | 'cs'
+  | 'da'
+  | 'nl'
+  | 'en'
+  | 'en_GB'
+  | 'es_LA'
+  | 'et'
+  | 'fil'
+  | 'fi'
+  | 'fr'
+  | 'de'
+  | 'el'
+  | 'gu'
+  | 'he'
+  | 'hi'
+  | 'hu'
+  | 'id'
+  | 'ga'
+  | 'it'
+  | 'ja'
+  | 'kn'
+  | 'kk'
+  | 'ko'
+  | 'lo'
+  | 'lv'
+  | 'lt'
+  | 'mk'
+  | 'ms'
+  | 'mr'
+  | 'nb'
+  | 'fa'
+  | 'pl'
+  | 'pt_BR'
+  | 'pt_PT'
+  | 'pa'
+  | 'ro'
+  | 'ru'
+  | 'sr'
+  | 'sk'
+  | 'sl'
+  | 'es'
+  | 'es_AR'
+  | 'es_ES'
+  | 'es_MX'
+  | 'sw'
+  | 'sv'
+  | 'ta'
+  | 'te'
+  | 'th'
+  | 'tr'
+  | 'uk'
+  | 'ur'
+  | 'uz'
+  | 'vi';
 
 export interface StartConversationParameter {
   /** The type of the message content. */
@@ -279,7 +345,7 @@ export interface HSMLanguage {
    */
   policy: 'fallback' | 'deterministic';
   /** The code of the language or locale to use, accepts both language and language_locale formats (e.g., en or en_US). */
-  code: languages;
+  code: hsmLanguages;
 }
 
 export type HSMLocalizableParameters =
