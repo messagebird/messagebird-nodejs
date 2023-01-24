@@ -1,6 +1,6 @@
-import messagebird from 'messagebird';
+import { initClient } from 'messagebird';
 
-const mbClient = messagebird('<AccessKey>');
+const mbClient = initClient('<AccessKey>');
 
 mbClient.transcriptions.create('<CALL_ID>', '<LEG_ID>', '<RECORDING_ID>', '<LANGUAGE>', (
   // $ExpectType Error | null

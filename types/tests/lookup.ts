@@ -1,6 +1,6 @@
-import messagebird from 'messagebird';
+import { initClient } from 'messagebird';
 
-const mbClient = messagebird('<AccessKey>');
+const mbClient = initClient('<AccessKey>');
 
 mbClient.lookup.read('31612345678', (
   // $ExpectType Error | null

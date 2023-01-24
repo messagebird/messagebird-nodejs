@@ -1,7 +1,7 @@
-import messagebird from 'messagebird';
+import { initClient } from 'messagebird';
 
 // $ExpectType MessageBird
-messagebird('<AccessKey>');
+initClient('<AccessKey>');
 
 // $ExpectType MessageBird
-messagebird('<AccessKey>', 42);
+initClient('<AccessKey>', 42);
