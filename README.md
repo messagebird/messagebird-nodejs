@@ -25,17 +25,15 @@ Let's go ahead and initialize the library first. Don't forget to replace `<YOUR_
 CommonJS require syntax:
 
 ```javascript
-const messagebird = require('messagebird')('<YOUR_ACCESS_KEY>');
+const messagebird = require('messagebird').initClient('<YOUR_ACCESS_KEY>');
 ```
 
 Typescript with ES6 import (or .mjs with Node >= v13):
 
 ```typescript
-import initMB from 'messagebird';
-const messagebird = initMB('<YOUR_ACCESS_KEY>');
+import { initClient } from 'messagebird';
+const messagebird = initClient('<YOUR_ACCESS_KEY>');
 ```
-
-Tip: Don't forget to enable the `esModuleInterop` in tsconfig.json.
 
 Nice! Now we can send API requests through node. Let's use getting your balance overview as an example:
 
