@@ -6,7 +6,7 @@ import { Message, MessageParameters, FilterParameters } from './messages';
 import {
   VoiceMessage,
   VoiceParameters,
-  VoiceParametersWithRecipients
+  VoiceParametersWithRecipients,
 } from './voice_messages';
 import { msisdn } from './general';
 import { Verify, VerifyParameter, VerifyMessage } from './verify';
@@ -23,7 +23,7 @@ import {
   ReplyConversationParameters,
   Webhooks,
   StartConversationParameter,
-  StartConversationResponse
+  StartConversationResponse,
 } from './conversations';
 import { Webhooks as VoiceWebhooks } from './voice';
 import { MmsObject, MmsParameter } from './mms';
@@ -57,7 +57,11 @@ export interface MessageBird {
     create(params: CallFlowParameter, callback: CallbackFn<CallFlow>): void;
   };
   voice_messages: {
-    list(limit: number, offset: number, callback: CallbackFn<VoiceMessage[]>): void;
+    list(
+      limit: number,
+      offset: number,
+      callback: CallbackFn<VoiceMessage[]>
+    ): void;
     read(id: string, callback: CallbackFn<VoiceMessage>): void;
     create(
       recipients: msisdn[],
@@ -78,8 +82,17 @@ export interface MessageBird {
       callback: CallbackFn<Verify>
     ): void;
     create(recipient: string | [string], callback: CallbackFn<Verify>): void;
-    createWithEmail(from: string, to: string | [string], params: VerifyParameter, callback: CallbackFn<Verify>): void;
-    createWithEmail(from: string, to: string | [string], callback: CallbackFn<Verify>): void;
+    createWithEmail(
+      from: string,
+      to: string | [string],
+      params: VerifyParameter,
+      callback: CallbackFn<Verify>
+    ): void;
+    createWithEmail(
+      from: string,
+      to: string | [string],
+      callback: CallbackFn<Verify>
+    ): void;
     delete(id: string, callback: CallbackFn<void>): void;
     verify(
       /** A unique random ID which is created on the MessageBird platform and is returned upon creation of the object. */
@@ -88,7 +101,10 @@ export interface MessageBird {
       token: string,
       callback: CallbackFn<Verify>
     ): void;
-    getVerifyEmailMessage(id: string, callback: CallbackFn<VerifyMessage>): void;
+    getVerifyEmailMessage(
+      id: string,
+      callback: CallbackFn<VerifyMessage>
+    ): void;
   };
   lookup: {
     read(
@@ -186,7 +202,10 @@ export interface MessageBird {
      * conversation already exists for the recipient, this conversation will
      * be resumed.
      */
-    start(params: StartConversationParameter, callback: CallbackFn<StartConversationResponse>): void;
+    start(
+      params: StartConversationParameter,
+      callback: CallbackFn<StartConversationResponse>
+    ): void;
     /**
      * Retrieves all conversations for this account. By default,
      * conversations are sorted by their lastReceivedDatetime field so that
@@ -304,19 +323,40 @@ export interface MessageBird {
     /**
      * Lists all recordings
      */
-    list(callId: string, legId: string, limit: number, offset: number, callback: CallbackFn<Recording[]>): void;
+    list(
+      callId: string,
+      legId: string,
+      limit: number,
+      offset: number,
+      callback: CallbackFn<Recording[]>
+    ): void;
     /**
      * This request retrieves a recording resource. The parameters are the unique ID of the recording, the leg and the call with which the recording is associated.
      */
-    read(callId: string, legId: string, recordingId: string, callback: CallbackFn<Recording>): void;
+    read(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      callback: CallbackFn<Recording>
+    ): void;
     /**
      * Deletes a recording
      */
-    delete(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
+    delete(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      callback: CallbackFn
+    ): void;
     /**
      * Downloads a recording
      */
-    download(callId: string, legId: string, recordingId: string, callback: CallbackFn): void;
+    download(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      callback: CallbackFn
+    ): void;
   };
   /**
    * A transcription is a textual representation of a recording as text.
@@ -325,27 +365,52 @@ export interface MessageBird {
     /**
      * Creates a new transcription
      */
-    create(callId: string, legId: string, recordingId: string, language: string, callback: CallbackFn<TranscriptionData>): void;
+    create(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      language: string,
+      callback: CallbackFn<TranscriptionData>
+    ): void;
     /**
      * Lists all transcriptions
      */
-    list(callId: string, legId: string, recordingId: string, callback: CallbackFn<TranscriptionData>): void;
+    list(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      callback: CallbackFn<TranscriptionData>
+    ): void;
     /**
      * Retrieves a transcription
      */
-    read(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn<TranscriptionData>): void;
+    read(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      transcriptionId: string,
+      callback: CallbackFn<TranscriptionData>
+    ): void;
     /**
      * Downloads a transcription
      */
-    download(callId: string, legId: string, recordingId: string, transcriptionId: string, callback: CallbackFn<boolean|string>): void;
+    download(
+      callId: string,
+      legId: string,
+      recordingId: string,
+      transcriptionId: string,
+      callback: CallbackFn<boolean | string>
+    ): void;
   };
   voice: {
-
     webhooks: {
       /**
        * Creates a new webhook.
        */
-      create(params: VoiceWebhooks.CreateParameters, callback: CallbackFn): void;
+      create(
+        params: VoiceWebhooks.CreateParameters,
+        callback: CallbackFn
+      ): void;
       /**
        * Retrieves an existing webhook by id.
        */
@@ -366,8 +431,7 @@ export interface MessageBird {
        * Deletes webhook
        */
       delete(id: string, callback: CallbackFn): void;
-
-    }
+    };
   };
 }
 
@@ -384,4 +448,8 @@ export * from './mms';
 export * from './recordings';
 export * from './transcriptions';
 
-export default function messagebird(accessKey: string, timeout?: number, features?: ReadonlyArray<Features>): MessageBird;
+export function initClient(
+  accessKey: string,
+  timeout?: number,
+  features?: ReadonlyArray<Features>
+): MessageBird;
