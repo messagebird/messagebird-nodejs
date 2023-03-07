@@ -1,3 +1,4 @@
+import { Webhooks } from 'voice';
 import { datetime } from './general';
 import { languages } from './voice_messages';
 
@@ -36,6 +37,8 @@ export interface CallParameter {
   destination: string;
   /** The first name of the contact. */
   callFlow: CallFlowParameter;
+  /** The webhook status callback */
+  webhook?: Webhooks.CreateParameters;
 }
 
 export interface StepParameter {
