@@ -67,6 +67,11 @@ export interface VerifyParameter {
    * The language in which the message needs to be read to the recipient. Default: en-gb
    */
   language?: languages;
+
+  /**
+   * The maximum number of token input attempts a user can do before the Verify object is marked as failed. Must be between 1 and 10. Default: 1
+   */
+  maxAttempts?: number;
 }
 
 export interface VerifyMessage {

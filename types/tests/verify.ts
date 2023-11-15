@@ -19,7 +19,8 @@ mbClient.verify.create('31612345678', (
 mbClient.verify.create('31612345678', {
   type: "sms",
   datacoding: "plain",
-  tokenLength: 8
+  tokenLength: 8,
+  maxAttempts: 3,
 }, (
   // $ExpectType Error | null
   err,
